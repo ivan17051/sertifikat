@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::where('isactive',1)->with('unitKerja:id,nama,nama_alias')->get();
+        $user = User::where('isactive',1)->get();
         return view('master.user', ['user' => $user]);
     }
 

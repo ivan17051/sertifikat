@@ -4,8 +4,8 @@
 Data Peserta
 @endsection
 
-@section('masterStatus')
-active
+@section('masterShow')
+menu-open
 @endsection
 
 @section('pesertaStatus')

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Acara;
 use App\User;
+use App\Transaksi;
+use App\Peserta;
 use Auth;
 use Datatables;
 use DB;
@@ -15,7 +17,7 @@ class AcaraController extends Controller
     public function index(Request $request)
     {
         $d['user'] = Auth::user();
-        $d['acara'] = Acara::all(['id','nama', 'kategori', 'tanggal', 'tempat', 'nomor', ]);
+        $d['acara'] = Acara::all(['id','nama', 'kategori', 'tanggal', 'tempat', 'nomor']);
         dd($d);
 
         return view('acara', $d);
@@ -28,13 +30,22 @@ class AcaraController extends Controller
         return $datatable->addIndexColumn()->make(true);
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
-        $d['acara'] = Acara::findOrFail($id);
-        $d['peserta'] = User::whereIn($d['acara']->iduser)->get();
-        dd($d);
+        if($id==0 && !isset($request->idacara)){
+            $d['acara'] = Acara::all(['id','nama','tanggal']);
+            $d['id'] = $id;
+            return view('sertifikat', $d);
 
-        return view('acara', $d);
+        } else {
+            $d['id'] = $request->idacara;
+            $d['acara'] = Transaksi::where('idacara', $request->idacara)->with('acara')->first();
+            $user = explode(',', $d['acara']->iduser);
+            $d['peserta'] = Peserta::whereIn('id', $user)->get();
+
+        }
+
+        return view('sertifikat', $d);
     }
 
     public function store(Request $request)

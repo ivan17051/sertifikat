@@ -30,22 +30,14 @@
                with font-awesome or any other icon font library -->
             
             <li class="nav-item">
-                <a href="{{url('/')}}" class="nav-link @yield('awalStatus')">
+                <a href="{{url('/')}}" class="nav-link @yield('dashboardStatus')">
                     <i class="nav-icon fas fa-desktop"></i>
                     <p>
-                        Tampilan Awal
+                        Dashboard
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{route('acara.show',['id'=>Auth::id()])}}" class="nav-link @yield('cekStatus')">
-                    <i class="nav-icon fas fa-file-invoice"></i>
-                    <p>
-                        Cek Absensi
-                    </p>
-                </a>
-            </li>
-            
+
             <!-- <li class="nav-header">ADMIN</li> -->
             <li class="nav-item @yield('masterShow')">
                 <a href="#" class="nav-link">
@@ -68,7 +60,22 @@
                             <p>User</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('peserta.index')}}" class="nav-link @yield('pesertaStatus')">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Peserta</p>
+                        </a>
+                    </li>
                 </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{route('acara.show',['id'=>'0'])}}" class="nav-link @yield('sertifikatStatus')">
+                    <i class="nav-icon fas fa-file-invoice"></i>
+                    <p>
+                        Sertifikat
+                    </p>
+                </a>
             </li>
             
             <!-- <li class="nav-item">
@@ -79,15 +86,6 @@
                     </p>
                 </a>
             </li> -->
-
-            <li class="nav-item">
-                <a href="{{route('peserta.index')}}" class="nav-link @yield('pesertaStatus')">
-                    <i class="nav-icon fas fa-calendar-check"></i>
-                    <p>
-                        Agenda
-                    </p>
-                </a>
-            </li>
 
         </ul>
     </nav>

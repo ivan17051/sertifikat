@@ -16,8 +16,8 @@ class Transaksi extends Model
 	    "jumlah"
     ];
 
-    public function unitKerja(){
-        return $this->belongsTo(UnitKerja::class, 'idacara');
+    public function acara(){
+        return $this->belongsTo(Acara::class, 'idacara');
     }
     
 }
