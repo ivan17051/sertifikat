@@ -17,10 +17,9 @@ class AcaraController extends Controller
     public function index(Request $request)
     {
         $d['user'] = Auth::user();
-        $d['acara'] = Acara::all(['id','nama', 'kategori', 'tanggal', 'tempat', 'nomor']);
-        dd($d);
+        $d['acara'] = Acara::all();
 
-        return view('acara', $d);
+        return view('master.acara', $d);
     }
 
     public function data(Request $request)
@@ -40,8 +39,17 @@ class AcaraController extends Controller
         } else {
             $d['id'] = $request->idacara;
             $d['acara'] = Transaksi::where('idacara', $request->idacara)->with('acara')->first();
-            $user = explode(',', $d['acara']->iduser);
-            $d['peserta'] = Peserta::whereIn('id', $user)->get();
+
+            if(!isset($d['acara'])){
+                // $acara = Acara::findOrFail($request->idacara);
+                $model = new Transaksi();
+                $model->idacara = $request->idacara;
+                $model->save();
+            }
+
+            $d['user'] = explode(',', $d['acara']->iduser);
+            $d['peserta'] = Peserta::whereIn('id', $d['user'])->get();
+            $d['allPeserta'] = Peserta::whereNotIn('id', $d['user'])->get(['id','nama']);
 
         }
 

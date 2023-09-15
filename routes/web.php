@@ -23,6 +23,9 @@ Route::middleware(['auth'])->group(function (){
 
     Route::post('/peserta/data', 'PesertaController@data')->name('peserta.data');
 
+    Route::put('/transaksi/add/{idacara}', 'TransaksiController@add')->name('transaksi.add');
+    Route::get('/transaksi/cetak/{idacara}', 'TransaksiController@cetak')->name('transaksi.cetak');
+
     Route::get('/data/laporan', 'DataController@laporan')->name('data.laporan');
     Route::post('/data/laporan', 'DataController@downloadLaporan')->name('data.download');
 

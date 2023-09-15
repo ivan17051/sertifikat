@@ -35,6 +35,14 @@ active
                         <label><b>Nama</b></label>
                         <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama" required>
                     </div>
+                    <div class="form-group">
+                        <label class="d-block"><b>Tempat Lahir</b></label>
+                        <input type="text" id="tempatlahir" name="tempatlahir" class="form-control" placeholder="Tempat Lahir">
+                    </div>
+                    <div class="form-group">
+                        <label class="d-block"><b>Tanggal Lahir</b></label>
+                        <input type="date" id="tanggallahir" name="tempatlahir" class="form-control" placeholder="Tempat Lahir">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -98,6 +106,7 @@ active
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Data Master</a></li>
                         <li class="breadcrumb-item active">Peserta</li>
                     </ol>
@@ -126,32 +135,8 @@ active
                 <!-- /.card-header -->
                 <div class="card-body">
 
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Unit Kerja</th>
-                                <th>Nama</th>
-                                <th>Tanggal</th>
-                                <th>Jam Masuk</th>
-                                <th>Jam Pulang</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Unit Kerja</th>
-                                <th>Nama</th>
-                                <th>Tanggal</th>
-                                <th>Jam Masuk</th>
-                                <th>Jam Pulang</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </tfoot>
+                    <table id="table1" class="table table-bordered table-striped">
+                        
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -187,6 +172,7 @@ active
         var tr = $(self).closest('tr');
         let idx = oTable.row(tr)[0]
         var data = oTable.data()[idx];
+        console.log(data);
         
         $modal.find('input[name=id]').val(data['id']);
         $modal.find('input[name=nik]').val(data['nik']);
@@ -227,32 +213,20 @@ active
 
     $(document).ready(function(){
         oTable = $("#table1").DataTable({
-            select:{
-                className: 'dataTable-selector form-select'
-            },
-            scrollX: isMobile?true:false,
+            
             processing: true,
             serverSide: true,
             ajax: {type: "POST", url: '{{route("peserta.data")}}', data:{'_token':@json(csrf_token())}},
             columns: [
                 { data:'id', title:'ID', visible: false},
-                { data:'idgolongan', title:'idgolongan', name:'idgolongan', visible: false},
-                { data:'idjabatan', title:'idjabatan', name:'idjabatan', visible: false},
-                { data:'nip', title:'NIP'},
+                { data:'nik', title:'NIK', name:'nik'},
                 { data:'nama', title:'Nama'},
-                { data:'nokartu', title:'No. Kartu'},
-                { data:'nohp', title:'No. HP', visible: false},
-                { data:'nik', title:'NIK', visible: false},
-                { data:'tempatlahir', title:'TempatLahir', visible: false},
-                { data:'tanggallahir', title:'TanggalLahir', visible: false},
-                { data:'alamat', title:'Alamat', visible: false},
-                { data:'status', title:'Status', render: function(e,d,row){
-                    if(row['status']==1){
-                        return '<span class="text-success">Aktif</span>'
-                    }else{
-                        return '<span class="text-danger">Pensiun</span>'
-                    }
+                { data:'id', title:'Tempat, Tanggal Lahir', render: function(e,d,row){
+                    return row['tempatlahir'] + ', ' + row['tanggallahir'];
                 } },
+                { data:'alamat', title:'Alamat', visible: false},
+                { data:'unitkerja', title:'Unit Kerja'},
+                { data:'jabatan', title:'Jabatan'},
                 { data:'action', title:'Aksi'},
             ],
         });
