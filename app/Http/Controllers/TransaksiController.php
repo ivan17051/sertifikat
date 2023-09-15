@@ -2,79 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Datatables;
-use App\UnitKerja;
-use App\Golongan;
-use App\Pegawai;
-use App\Jabatan;
-use App\Pendidikan;
-use App\Penilaian;
+use App\Acara;
+use App\Peserta;
 
-class DataMasterController extends Controller
+class TransaksiController extends Controller
 {
-    public function unitKerja(){
-        $unitKerja = UnitKerja::all();
-        return view('master.unitKerja', ['unitkerja'=>$unitKerja]);
-    }
-    public function pegawai(){
-        $jabatan = Jabatan::all();
-        $golongan = Golongan::all();
-        return view('masterData.pegawai', ['jabatan'=>$jabatan, 'golongan'=>$golongan]);
-    }
-    public function pegawaiData(Request $request){
-        $data = Pegawai::with('penilaian')->get();
+    public function add($idacara, Request $request){
         
-        $datatable = Datatables::of($data);
-        $datatable->addIndexColumn()
-            ->addColumn('idgolongan', function ($t){
-                if(isset($t->penilaian))
-                    return $t->penilaian->idgolongan;
-                else
-                    return '-';
-            })
-            ->addColumn('idjabatan', function ($t){
-                if(isset($t->penilaian))
-                    return $t->penilaian->idjabatan;
-                else
-                    return '-';
-            })
-            ->addColumn('pendidikan', function ($t) { 
-                if(isset($t->penilaian))
-                    return $t->penilaian->idpendidikan;
-                else
-                    return '-';
-            })
-            ->addColumn('unitkerja', function ($t) {
-                if(isset($t->penilaian))
-                    return $t->penilaian->idunitkerja;
-                else
-                    return '-';
-            })
-            ->rawColumns(['id','nip','nik','nama','nokartu','tempatlahir','tanggallahir', 'jeniskelamin', 'alamat', 'nohp', 'action']);
-        
-        $datatable->addColumn('action', function ($t) { 
-                return '<a class="btn btn-sm btn-outline-warning" onclick="edit(this)" data-bs-toggle="modal" data-bs-target="#sunting"><i class="bi bi-pencil-square"></i></a>&nbsp'.
-                '<a class="btn btn-sm btn-outline-success" onclick="show(this)"><i class="bi bi-box-arrow-up-right"></i></a>&nbsp'.
-                '<a class="btn btn-sm btn-outline-danger" onclick="hapus(this)"><i class="bi bi-trash-fill"></i></a>&nbsp';
-            });
-        
-        return $datatable->make(true); 
+        try {
+            $model = Transaksi::where('idacara', $idacara)->first();
+            $add = implode(',',$request->addPeserta);
+            $count = count($request->addPeserta);
+            $model->iduser = $add;
+            $model->jumpeserta = $count;
+            $model->save();
+            
+        } catch (\Throwable $th) {
+            return back()->with('error','Gagal Menyimpan');
+        }
+        return back()->with('success','Berhasil Menyimpan');
     }
 
-    public function golongan(){
-        $golongan = Golongan::all();
-        return view('masterData.golongan', ['golongan'=>$golongan]);
-    }
-    public function jabatan(){
-        $jabatan = Jabatan::all();
-        return view('masterData.jabatan', ['jabatan'=>$jabatan]);
-    }
-    public function pendidikan(){
-        $pendidikan = Pendidikan::all();
-        return view('masterData.pendidikan', ['pendidikan'=>$pendidikan]);
+    public function cetak($idacara, Request $request){
+        $d['acara'] = Acara::findOrFail($idacara);
+        $d['peserta'] = Peserta::findOrFail($request->idpeserta);
+
+        return view('cetak.cetak1', $d);
     }
 
     public function searchPegawai(Request $request){

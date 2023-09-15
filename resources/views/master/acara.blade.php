@@ -4,7 +4,7 @@
 menu-open
 @endsection
 
-@section('unitKerjaStatus')
+@section('acaraStatus')
 active
 @endsection
 
@@ -23,7 +23,7 @@ active
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Data Master</a></li>
-                        <li class="breadcrumb-item active">Unit Kerja</li>
+                        <li class="breadcrumb-item active">Acara</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -43,28 +43,40 @@ active
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Nama Alias</th>
-                                <th>Alamat</th>
                                 <th hidden>ID</th>
+                                <th>Tanggal</th>
+                                <th>Nama</th>
+                                <th>Kategori</th>
+                                <th hidden>Background</th>
+                                <th>Tempat</th>
+                                <th hidden>Status</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($unitkerja as $unit)
+                            @foreach($acara as $unit)
                             <tr>
-                                <td>{{$unit->nama}}</td>
-                                <td>{{$unit->nama_alias}}</td>
-                                <td>{{$unit->alamat}}</td>
                                 <td hidden>{{$unit->id}}</td>
+                                <td>{{$unit->tanggal}}</td>
+                                <td>{{$unit->nama}}</td>
+                                <td>{{$unit->kategori}}</td>
+                                <td hidden>{{$unit->background}}</td>
+                                <td>{{$unit->tempat}}</td>
+                                <td hidden>{{$unit->status}}</td>
+                                <td></td>
                             </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Nama</th>
-                                <th>Nama Alias</th>
-                                <th>Alamat</th>
                                 <th hidden>ID</th>
+                                <th>Tanggal</th>
+                                <th>Nama</th>
+                                <th>Kategori</th>
+                                <th hidden>Background</th>
+                                <th>Tempat</th>
+                                <th hidden>Status</th>
+                                <th>Aksi</th>
                             </tr>
                         </tfoot>
                     </table>
