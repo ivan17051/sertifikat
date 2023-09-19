@@ -7,27 +7,46 @@
     <link href="{{asset('/public/css/report-screen.css')}}" rel="stylesheet" type="text/css" media="screen">
     <title>SERTIFIKAT</title>
     <style media="all" type="text/css">
-        body{
-            font-family:Verdana, Geneva, sans-serif;
-            font-size:12px;
-            padding:0px;
-            margin:0px;
-        } 
-        .TebalBorder{ 
-            border-bottom:solid 2px;
-        } 
-        p{
-            text-indent:40px;
+        body {
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 12px;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .TebalBorder {
+            border-bottom: solid 2px;
+        }
+
+        p {
+            text-indent: 40px;
+        }
+
+        .background{
+            background-image: url({{asset('public/dist/img/BG2.png')}});
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-size: cover; /* Resize the background image to cover the entire container */
         }
     </style>
 </head>
 
-<body>
-    <table class="screen panjang page-break">
+<body class="">
+    
+    <table class="screen panjang lebarKertasTegak page-break background">
         <tbody>
+            <tr><td style="color: #fff;">.</td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr><td>&nbsp;</td></tr>
             <tr>
                 <td class="jarak">
-                    <table class="lebarKertasTegak" cellspacing="0" cellpadding="0" border="0">
+                    <table class="lebarTabelTegak" cellspacing="0" cellpadding="0" border="0">
                         <tbody>
                             <tr>
                                 <td class="" style="height: 70mm;"></td>
@@ -37,80 +56,100 @@
                                 $bulan = ['','I','II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
                                 $mytime = Carbon\Carbon::make(date("Y-m-d"));
                                 @endphp
-                                <td class="headerFont fontCenter paddingfont" style="font-size:13px">{{$acara->nama}}</td>
+                                <td class="headerFont fontCenter paddingfont" style="font-size:16px">{{$acara->nama}}
+                                </td>
                             </tr>
                             <tr>
-                                <td class="fontCenter paddingfont" style="font-size:13px">NOMOR : {{$acara->nomor}}</td>
+                                <td class="fontCenter paddingfont" style="font-size:16px">NOMOR : {{$acara->nomor}}</td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
                             </tr>
-                            
+
                             <tr>
                                 <td>
-                                    <table class="table-padding" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                    <table class="table-padding" width="100%" cellspacing="0" cellpadding="0"
+                                        border="0">
                                         <tbody>
                                             <tr>
                                                 <td style="width:5%;"></td>
-                                                <td class="paddingfont" style="font-size:13px">Berdasarkan :</td>
+                                                <td class="paddingfont" style="font-size:15px">Berdasarkan :</td>
                                             </tr>
                                             <tr>
-                                                <td class="paddingfont" style="font-size:13px">a</td>
-                                                <td class="paddingfont" style="font-size:13px" colspan="2">Peraturan Menteri Kesehatan Republik Indonesia Nomor 14 Tahun 2021 tentang Standar Kegiatan Usaha dan Produk Pada Penyelenggaraan Perizinan Berusaha Berbasis Risiko Sektor Kesehatan</td>
+                                                <td class="paddingfont" style="font-size:15px">a</td>
+                                                <td class="paddingfont" style="font-size:15px" colspan="2">Peraturan
+                                                    Menteri Kesehatan Republik Indonesia Nomor 14 Tahun 2021 tentang
+                                                    Standar Kegiatan Usaha dan Produk Pada Penyelenggaraan Perizinan
+                                                    Berusaha Berbasis Risiko Sektor Kesehatan.</td>
                                             </tr>
                                             <tr>
-                                                <td class="paddingfont" style="font-size:13px">b</td>
-                                                <td class="paddingfont" style="font-size:13px" colspan="2">Peraturan Menteri Kesehatan Republik Indonesia Nomor 14 Tahun 2021 tentang Standar Kegiatan Usaha dan Produk Pada Penyelenggaraan Perizinan Berusaha Berbasis Risiko Sektor Kesehatan</td>
+                                                <td class="paddingfont" style="font-size:15px">b</td>
+                                                <td class="paddingfont" style="font-size:15px" colspan="2">Peraturan
+                                                    Menteri Kesehatan Republik Indonesia Nomor 1096/Menkes/Per/VI/2011 tentang
+                                                    Higiene Sanitasi Jasa Boga.</td>
                                             </tr>
                                             <tr>
-                                                <td class="paddingfont" style="font-size:13px">c</td>
-                                                <td class="paddingfont" style="font-size:13px" colspan="2">Peraturan Menteri Kesehatan Republik Indonesia Nomor 14 Tahun 2021 tentang Standar Kegiatan Usaha dan Produk Pada Penyelenggaraan Perizinan Berusaha Berbasis Risiko Sektor Kesehatan</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td colspan="2"></td>
-                                            </tr>
-                                            
-                                            <tr>
-                                                <td></td>
-                                                <td class="paddingfont" style="font-size:13px" colspan="2">Telah dilaksanakan {{$acara->nama}} bagi {{$peserta->jabatan}} yang diselenggarakan oleh Dinas Kesehatan Kota Surabaya pada tanggal {{\Carbon\Carbon::make($acara->tanggal)->translatedFormat('d-m-Y')}} dengan ini memberikan sertifikat kepada :</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td class="paddingfont" style="width:35%;font-size: 13px;">Nama</td>
-                                                <td class="paddingfont" style="font-size:13px">: {{$peserta->nama}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td class="paddingfont" style="font-size:13px">Tempat, Tanggal Lahir</td>
-                                                <td class="paddingfont" style="font-size:13px">: {{$peserta->tempatlahir}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td class="paddingfont" style="font-size:13px">Alamat</td>
-                                                <td class="paddingfont" style="font-size:13px">: {{$peserta->alamat}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td class="paddingfont" style="font-size:13px">Pekerjaan / Jabatan</td>
-                                                <td class="paddingfont" style="font-size:13px">: {{$peserta->jabatan}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td class="paddingfont" style="font-size:13px">Perusahaan / Unit Kerja</td>
-                                                <td class="paddingfont" style="font-size:13px">: {{$peserta->unitkerja}}</td>
+                                                <td class="paddingfont" style="font-size:15px">c</td>
+                                                <td class="paddingfont" style="font-size:15px" colspan="2">Keputusan
+                                                    Menteri Kesehatan Nomor 1098/Menkes/SK/VII/2023 tentang
+                                                    Persyaratan Hygiene Sanitasi Rumah Makan dan Restoran.</td>
                                             </tr>
                                             <tr>
                                                 <td></td>
                                                 <td colspan="2"></td>
                                             </tr>
+
                                             <tr>
                                                 <td></td>
-                                                <td class="paddingfont" style="font-size:13px" colspan="2">Pemegang Sertifikat ini telah memnuhi syarat dan dipandang cakap untuk mengelola</td>
+                                                <td class="paddingfont" style="font-size:15px" colspan="2">Telah
+                                                    dilaksanakan {{$acara->nama}} bagi {{$peserta->jabatan}} yang
+                                                    diselenggarakan oleh Dinas Kesehatan Kota Surabaya pada tanggal
+                                                    {{\Carbon\Carbon::make($acara->tgl_mulai)->translatedFormat('d M Y')}} - {{\Carbon\Carbon::make($acara->tgl_selesai)->translatedFormat('d M Y')}}
+                                                    dengan ini memberikan sertifikat kepada :</td>
                                             </tr>
-                                            
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="width:35%;font-size: 15px;">Nama</td>
+                                                <td class="paddingfont" style="font-size:15px">: {{$peserta->nama}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="font-size:15px">Tempat, Tanggal Lahir
+                                                </td>
+                                                <td class="paddingfont" style="font-size:15px">:
+                                                    {{$peserta->tempatlahir}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="font-size:15px">Alamat</td>
+                                                <td class="paddingfont" style="font-size:15px">: {{$peserta->alamat}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="font-size:15px">Pekerjaan / Jabatan</td>
+                                                <td class="paddingfont" style="font-size:15px">: {{$peserta->jabatan}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="font-size:15px">Perusahaan / Unit Kerja
+                                                </td>
+                                                <td class="paddingfont" style="font-size:15px">: {{$peserta->unitkerja}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="font-size:15px" colspan="2">Pemegang
+                                                    Sertifikat ini telah memenuhi syarat dan dipandang cakap sebagai Penjamah Makanan (Food Handler).</td>
+                                            </tr>
+
                                         </tbody>
-                                        
+
                                     </table>
                                 </td>
                             </tr>
@@ -119,39 +158,43 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <table width="100%" cellspacing="0" cellpadding="0" >
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
                                             <tr>
-                                                <td width="70%" class="keterangan">
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    ASLI disampaikan dengan hormat kepada :<br>
-                                                    Kepala Kantor Regional II BKN di Sidoarjo ;<br>
-                                                    <br>
-                                                    TEMBUSAN disampaikan kepada :<br>
-                                                    1. Pegawai yang bersangkutan<br>
-                                                    2. Kepala $data->unitKerja->nama<br>
-                                                    3. Kepala Badan Kepegawaian dan Diklat Pemerintah Kota Surabaya<br>
-
+                                                <td width="45%" class="keterangan">
                                                 </td>
                                                 <td class="fontBold">
-                                                    DITETAPKAN DI : SURABAYA<br>
-                                                    PADA TANGGAL : <br><br>
-                                                    <div class="fontCenter">KEPALA DINAS KESEHATAN</div>
-                                                    <div class="fontCenter">KOTA SURABAYA</div>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <div class="fontCenter" style="text-decoration: underline;">Nanik Sukristina, S.KM, M.Kes</div>
-                                                    <div class="fontCenter">Pembina Tk. I</div>
-                                                    <div class="fontCenter">NIP 197001171994032008</div>
+                                                    <div style="font-size: 15px;margin-bottom: 10px;">Surabaya, 10 Januari 2023</div> 
+                                                    <div style="border: solid black 1px; width: 350px;">
+                                                        <div style="display: flex;">
+                                                            <div style="flex: 32%;">
+                                                                <qr-code id="qr1"
+                                                                    contents="https://dinkes.surabaya.go.id/"
+                                                                     style="
+                                                                        width: 110px;
+                                                                        height: 110px;
+                                                                        background-color: #fff;
+                                                                        ">
+                                                                    <img src="{{asset('/public/dist/img/logoSby_32.png')}}"
+                                                                        slot="icon" style="width:22px;" />
+                                                                </qr-code>
+                                                            </div>
+                                                            <div style="flex: 68%;">
+                                                                <div style="font-size: 11px;font-weight: lighter;margin-top: 5px;">Surat Ini Ditandatangani Elektronik Oleh: </div>
+                                                                <div style="font-size: 12px;font-weight: lighter;">KEPALA DINAS</div>
+                                                                <br>
+                                                                <div style="font-weight: light; margin-top:10px;text-decoration: underline;">NANIK SUKRISTINA, S.KM., M.Kes</div>
+                                                                <div style="font-size: 12px;font-weight: lighter;">Pembina Utama Muda</div>
+                                                                <div style="font-size: 12px;font-weight: lighter;">NIP 197001171994032008</div>
+                                                            </div>
+                                                        </div>
+                                                            
+                                                        </div>
+
+
+                                                    </div>
+
+                                                
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -162,11 +205,24 @@
                     </table>
                 </td>
             </tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr>
+                <td style="color: #fff;">.</td>
+            </tr>
         </tbody>
     </table>
     <script>
         // window.print();
     </script>
+    <script>
+        document.getElementById('qr1').addEventListener('codeRendered', () => {
+            document.getElementById('qr1');
+        });
+    </script>
+    <script src="https://unpkg.com/@bitjson/qr-code@1.0.2/dist/qr-code.js"></script>
 </body>
 
 </html>

@@ -152,7 +152,7 @@ active
                                 </li>
                             </ul>
 
-                            <a href="#" class="btn btn-primary btn-block"><b>Upload Background</b></a>
+                            <a href="#" class="btn btn-primary btn-block"><b>Background</b></a>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -166,8 +166,8 @@ active
                         <!-- /.card-header -->
                         <div class="card-body">
                             <strong><i class="fas fa-calendar mr-1"></i> Tanggal</strong>
-                            <p class="text-muted">{{\Carbon\Carbon::make($acara->acara->tanggal)->translatedFormat('d F
-                                Y')}}</p>
+                            <p class="text-muted">{{\Carbon\Carbon::make($acara->acara->tgl_mulai)->translatedFormat('d M Y')}} - 
+                                {{\Carbon\Carbon::make($acara->acara->tgl_selesai)->translatedFormat('d M Y')}}</p>
                             <hr>
 
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Lokasi</strong>

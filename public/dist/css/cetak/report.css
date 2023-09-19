@@ -3,8 +3,9 @@ table{border-collapse:collapse;margin-left: auto;margin-right: auto; background-
 
 .page-break { page-break-after:always;}
 
-.lebarKertasTegak{width: 735px;}
-.lebarKertasTidur{width: 1198px;}
+/* Ukuran kerta F4 215mm x 330mm */
+.lebarKertasTegak{width: 215mm;}
+.lebarKertasTidur{width: 330mm;}
 .lebarKertasTidurPanjang{width: 1366px;}
 .potraitPage{width: 650px;}
 .landscapePage{width: 1198px;}

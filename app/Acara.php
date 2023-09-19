@@ -13,7 +13,8 @@ class Acara extends Model
     protected $fillable = [
         "nama",
         "kategori",
-        "tanggal",
+        "tgl_mulai",
+        "tgl_selesai",
         "tempat",
         "nomor",
         "background",

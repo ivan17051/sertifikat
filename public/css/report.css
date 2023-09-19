@@ -1,10 +1,12 @@
 td{height:15px;vertical-align:middle; vertical-align: top;}
-table{border-collapse:collapse;margin-left: auto;margin-right: auto; background-color: #FFFFFF}
+table{border-collapse:collapse;margin-left: auto;margin-right: auto;}
 
 .page-break { page-break-after:always;}
 
-.lebarKertasTegak{width: 735px;}
-.lebarKertasTidur{width: 1198px;}
+.lebarKertasTegak{width: 215mm;}
+.lebarTabelTegak{width: 170mm;}
+.lebarKertasTidur{width: 330mm;}
+.lebarTabelTidur{width: 305mm;}
 .potraitPage{width: 650px;}
 .landscapePage{width: 1198px;}
 
@@ -30,6 +32,11 @@ table{border-collapse:collapse;margin-left: auto;margin-right: auto; background-
 .paddingBawah{padding-bottom:10px;}
 .paddingKiri{padding-left:5px;}
 .paddingfont{padding-bottom:3px;padding-left:5px;padding-top:3px;padding-right:5px;}
+
+.m-20{margin:20px;}
+.w-25{width:25%;}
+.w-85{width:85%;}
+.w-89{width:89%;}
 
 .tb-header{
     font-size: 10px;
