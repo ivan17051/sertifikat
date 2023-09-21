@@ -24,8 +24,9 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/peserta/data', 'PesertaController@data')->name('peserta.data');
 
     Route::put('/transaksi/add/{idacara}', 'TransaksiController@add')->name('transaksi.add');
-    Route::get('/transaksi/cetak/{idacara}', 'TransaksiController@cetak')->name('transaksi.cetak');
-    Route::delete('/transaksi/delete/{idacara}', 'TransaksiController@delete')->name('transaksi.delete');
+    Route::put('/transaksi/update/{idacara}', 'TransaksiController@update')->name('transaksi.update');
+    Route::put('/transaksi/upload/{id}', 'TransaksiController@upload')->name('transaksi.upload');
+    Route::put('/transaksi/delete/{idacara}', 'TransaksiController@delete')->name('transaksi.hapus');
 
     Route::get('/data/laporan', 'DataController@laporan')->name('data.laporan');
     Route::post('/data/laporan', 'DataController@downloadLaporan')->name('data.download');
@@ -35,3 +36,5 @@ Route::middleware(['auth'])->group(function (){
         return $a->translatedFormat('Y-m-d');
     });
 });
+Route::get('/transaksi/search/{idacara}', 'TransaksiController@search')->name('transaksi.search');
+Route::get('/transaksi/cetak/{idacara}', 'TransaksiController@cetak')->name('transaksi.cetak');

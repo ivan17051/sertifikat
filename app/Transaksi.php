@@ -13,7 +13,10 @@ class Transaksi extends Model
     protected $fillable = [
         "iduser",
         "idacara",
-	    "jumlah"
+        "no_surat",
+        "tgl_surat",
+	    "jumpeserta",
+        "background",
     ];
 
     public function acara(){

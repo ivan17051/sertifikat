@@ -6,8 +6,7 @@ use App\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-use Datatables;
-use App\Acara;
+use Storage;
 use App\Peserta;
 
 class TransaksiController extends Controller
@@ -18,8 +17,8 @@ class TransaksiController extends Controller
             $model = Transaksi::where('idacara', $idacara)->first();
             $add = implode(',',$request->addPeserta);
             $count = count($request->addPeserta);
-            $model->iduser = $add;
-            $model->jumpeserta = $count;
+            $model->iduser = $model->iduser.','.$add;
+            $model->jumpeserta += $count;
             $model->save();
             
         } catch (\Throwable $th) {
@@ -29,13 +28,77 @@ class TransaksiController extends Controller
     }
 
     public function cetak($idacara, Request $request){
-        $d['acara'] = Acara::findOrFail($idacara);
+        $d['acara'] = Transaksi::where('idacara', $idacara)->with('acara')->first();
         $d['peserta'] = Peserta::findOrFail($request->idpeserta);
 
         return view('cetak.cetak1', $d);
     }
 
-    public function searchPegawai(Request $request){
+    public function upload($id, Request $request){
+        
+        try {
+            $data = Transaksi::findOrFail($id);
+
+            $mime = $request->file('background')->getMimeType();
+
+            $pattern = '/[a-zA-Z]+$/';
+            preg_match($pattern, $mime, $matches);
+            $mime = $matches[0];
+
+            $filename = $id . '.' . $mime;
+
+            $path = Storage::putFileAs(
+                'photos/',
+                $request->file('background'),
+                $filename
+            );
+
+            $url = url('/storage/app/photos/' . $filename);
+            
+            $data->background = $url;
+            $data->save();
+
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Gagal mengupload');
+        }
+        return back()->with('success', 'Berhasil mengupload');
+    }
+
+    public function update($id, Request $request){
+        try{
+            $model = Transaksi::findOrFail($id);
+            $model->tgl_surat = $request->tgl_surat;
+            $model->no_surat = $request->no_surat;
+            $model->save();
+
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Gagal menyimpan');
+        }
+        
+        return back()->with('success','Berhasil Menyimpan');
+    }
+
+    public function delete($idtrans, Request $request){
+        
+        try {
+            $model=Transaksi::findOrFail($idtrans);
+            $peserta = explode(',',$model->iduser);
+            
+            if (($key = array_search($request->idpeserta, $peserta)) !== false) {
+                unset($peserta[$key]);
+            }
+            $model->jumpeserta -= 1;
+            $model->iduser = implode(',',$peserta);
+            $model->save();
+            
+            return back()->with('success','Berhasil menghapus');
+
+        } catch (\Throwable $th) {
+            return back()->with('error','Gagal menghapus');
+        }
+    }
+
+    public function search(Request $request){
         $data=$request->input('query');
         // if($request->input('query')){
         $data = Pegawai::where('nama', 'like', '%' . strtolower($request->input('query')) . '%')

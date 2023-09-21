@@ -16,8 +16,6 @@ class Acara extends Model
         "tgl_mulai",
         "tgl_selesai",
         "tempat",
-        "nomor",
-        "background",
         "status"
         
     ];

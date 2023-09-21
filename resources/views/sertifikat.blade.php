@@ -46,7 +46,7 @@ active
                                 <select name="idacara" id="idacara" class="form-control select2">
                                     <option value="">--Pilih--</option>
                                     @foreach($acara as $unit)
-                                    <option value="{{$unit->id}}">{{$unit->tanggal}} | {{$unit->nama}}</option>
+                                    <option value="{{$unit->id}}">{{$unit->tgl_mulai}} | {{$unit->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -87,7 +87,6 @@ active
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" value="{{$acara->iduser}}">
                                 <label for="tanggal">Peserta</label>
                                 <select class="form-control select2" name="addPeserta[]" multiple="multiple" data-placeholder="Pilih Peserta"
                                     style="width: 100%;">
@@ -110,7 +109,120 @@ active
     </div>
     <!-- /.modal-dialog -->
 </div>
+<div class="modal fade" id="modalEdit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h4 class="modal-title">Edit Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('transaksi.update',['id'=>$acara->id])}}" method="post" id="formData"
+                enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="tgl_surat">Tanggal Surat</label>
+                                <input type="date" class="form-control" name="tgl_surat" value="{{$acara->tgl_surat}}">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="no_surat">Nomor Surat</label>
+                                <input type="text" class="form-control" name="no_surat" value="{{$acara->no_surat}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-warning">Simpan</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modalHapus">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title">Hapus Peserta</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="" method="post" id="formHapus"
+                enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    Yakin ingin hapus?
+                </div>
+
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modalLihat">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h4 class="modal-title">Background Sertifikat</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('transaksi.upload',['id'=>$acara->id])}}" method="post" id="formLihat" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    @if(isset($acara->background))
+                    <img src="{{asset($acara->background)}}" alt="" style="width: 100%;">
+                    @endif
+                    <div class="form-group">
+                        <label for="background">Upload Background</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="background" name="background">
+                                <label class="custom-file-label" for="background">Pilih Foto</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="background">Jenis Sertifikat</label>
+                        <select name="jns_sertif" id="jns_sertif" class="form-control select2">
+                            <option value="" @if(isset($acara->jns_sertif)) selected @endif disabled> --Pilih-- </option>
+                            <option value="1" @if($acara->jns_sertif == 1) selected @endif>Layak Higiene Sanitasi Makanan</option>
+                            <option value="2" @if($acara->jns_sertif == 2) selected @endif>Pelatihan Tenaga Kesehatan</option>
+                            <option value="3" @if($acara->jns_sertif == 3) selected @endif>Piagam Penghargaan</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-secondary">Simpan</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 <!-- /.modal -->
 
 <!-- Content Wrapper. Contains page content -->
@@ -152,7 +264,7 @@ active
                                 </li>
                             </ul>
 
-                            <a href="#" class="btn btn-primary btn-block"><b>Background</b></a>
+                            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalLihat"><b>Background</b></button>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -161,21 +273,32 @@ active
                     <!-- About Me Box -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Tentang</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3 class="card-title">Tentang</h3>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <button class="btn btn-light btn-sm" data-toggle="modal" data-target="#modalEdit"><i class="fas fa-pencil-alt"></i> Edit</button>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <strong><i class="fas fa-calendar mr-1"></i> Tanggal</strong>
+                            <strong><i class="fas fa-calendar mr-1"></i> Tanggal Acara</strong>
                             <p class="text-muted">{{\Carbon\Carbon::make($acara->acara->tgl_mulai)->translatedFormat('d M Y')}} - 
                                 {{\Carbon\Carbon::make($acara->acara->tgl_selesai)->translatedFormat('d M Y')}}</p>
                             <hr>
 
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Lokasi</strong>
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Lokasi Acara</strong>
                             <p class="text-muted">{{$acara->acara->tempat}}</p>
                             <hr>
 
-                            <strong><i class="fas fa-pencil-alt mr-1"></i> Nomor</strong>
-                            <p class="text-muted">{{$acara->acara->nomor}}</p>
+                            <strong><i class="fas fa-pencil-alt mr-1"></i> Nomor Sertifikat</strong>
+                            <p class="text-muted">{{isset($acara->no_surat) ? $acara->no_surat : '-'}}</p> 
+                            <hr>
+
+                            <strong><i class="fas fa-calendar-check mr-1"></i> Tanggal Sertifikat</strong>
+                            <p class="text-muted">{{isset($acara->tgl_surat) ? \Carbon\Carbon::make($acara->tgl_surat)->translatedFormat('d M Y') : '-'}}</p>
 
                         </div>
                         <!-- /.card-body -->
@@ -215,7 +338,7 @@ active
                                         <td>{{$unit->jabatan}}</td>
                                         <td>
                                             <a href="{{route('transaksi.cetak',['idacara'=>$acara->idacara, 'idpeserta'=>$unit->id])}}" class="btn btn-info btn-sm"><i class="fas fa-print nav-icon"></i></a>
-                                            <button class="btn btn-danger btn-sm"><i class="fas fa-trash nav-icon"></i></button>
+                                            <button class="btn btn-danger btn-sm" onclick="hapus({{isset($unit->id) ? $unit->id : 0}})"><i class="fas fa-trash nav-icon"></i></button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -261,6 +384,14 @@ active
         }
         // $('#formantrian').submit();
     }
+
+    @if($id!=0)
+    function hapus(idpeserta){
+        var $modal = $('#modalHapus');
+        $('#formHapus').attr('action',"{{route('transaksi.hapus',['idtrans'=>$acara->id])}}"+'?idpeserta='+idpeserta);
+        $modal.modal('show');
+    }
+    @endif
 
     $(function () {
         $("#example1").DataTable({

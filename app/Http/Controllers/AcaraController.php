@@ -24,7 +24,7 @@ class AcaraController extends Controller
 
     public function data(Request $request)
     {
-        $data = Acara::orderBy('tanggal', 'DESC');
+        $data = Acara::orderBy('tgl_mulai', 'DESC');
         $datatable = Datatables::of($data);
         return $datatable->addIndexColumn()->make(true);
     }
@@ -32,8 +32,9 @@ class AcaraController extends Controller
     public function show($id, Request $request)
     {
         if($id==0 && !isset($request->idacara)){
-            $d['acara'] = Acara::all(['id','nama','tanggal']);
+            $d['acara'] = Acara::all(['id','nama','tgl_mulai','tgl_selesai']);
             $d['id'] = $id;
+            
             return view('sertifikat', $d);
 
         } else {
@@ -41,18 +42,29 @@ class AcaraController extends Controller
             $d['acara'] = Transaksi::where('idacara', $request->idacara)->with('acara')->first();
 
             if(!isset($d['acara'])){
-                // $acara = Acara::findOrFail($request->idacara);
+                
                 $model = new Transaksi();
                 $model->idacara = $request->idacara;
                 $model->save();
-            }
 
-            $d['user'] = explode(',', $d['acara']->iduser);
-            $d['peserta'] = Peserta::whereIn('id', $d['user'])->get();
+                return redirect('/acara/0?idacara='.$request->idacara);
+            }
+            if(isset($d['acara']->iduser)){
+                
+                $d['user'] = explode(',', $d['acara']->iduser);
+                $d['peserta'] = Peserta::whereIn('id', $d['user'])->get();
+
+            } else {
+                
+                $d['user'] = [];
+                $d['peserta'] = [];
+
+            }
+            
             $d['allPeserta'] = Peserta::whereNotIn('id', $d['user'])->get(['id','nama']);
 
         }
-
+        
         return view('sertifikat', $d);
     }
 
