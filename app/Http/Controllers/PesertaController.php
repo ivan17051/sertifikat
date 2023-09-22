@@ -16,30 +16,28 @@ class PesertaController extends Controller
 
     public function data(Request $request) {
         // Lebih cepet pake raw() src: https://geekflare.com/laravel-optimization/
-        $data = Peserta::raw('select * from mpeserta');
-        // dd($data);
+        
+        $data = DB::select(DB::raw('SELECT * FROM mpeserta WHERE isactive = 1'));
+        
         $datatable = Datatables::of($data);
         $datatable->rawColumns(['action']);
         
         $datatable->addColumn('action', function ($t) { 
-                return '<a href="#" class="btn btn-info btn-link" style="padding:5px;" target="_blank" rel="noreferrer noopener"><i class="material-icons">launch</i></a>&nbsp'.
-                '<button type="button" class="btn btn-warning btn-link" style="padding:5px;" onclick="edit(this)"><i class="material-icons">edit</i></button>&nbsp'.
-                '<button type="button" class="btn btn-danger btn-link" style="padding:5px;" onclick="hapus(this)"><i class="material-icons">close</i></button>';
+                return '<button type="button" class="btn btn-warning btn-sm" style="padding:5px;width:30px;" onclick="edit(this)"><i class="fas fa-pencil-alt"></i></button>&nbsp'.
+                '<button type="button" class="btn btn-danger btn-sm" style="padding:5px;width:30px;" onclick="hapus(this)"><i class="fas fa-trash"></i></button>';
             });
         
         return $datatable->make(true); 
     }
 
     public function store(Request $request){
-        $user = Auth::user();
+
         try {
             DB::beginTransaction();
 
             $model = new Peserta();
             $model->fill($request->all());
-            $model->status = 0;
-            $model->iduser = $user->id;
-            
+
             $model->save();
             
         } catch (\Exception $e) {
@@ -58,7 +56,6 @@ class PesertaController extends Controller
 
             $model = Peserta::findOrFail($request->id);
             $model->fill($request->all());
-            $model->status = 0;
             
             $model->save();
             
@@ -72,13 +69,14 @@ class PesertaController extends Controller
             
     }
 
-    public function destroy($id){
-        
+    public function destroy(Request $request, $id){
+        // dd($request->all(),$id);
         try {
             DB::beginTransaction();
 
-            $model = Peserta::findOrFail($id);
-            $model->delete();
+            $model = Peserta::findOrFail($request->id);
+            $model->isactive = 0;
+            $model->save();
             
         } catch (\Exception $e) {
             DB::rollBack();

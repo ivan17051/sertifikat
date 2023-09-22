@@ -36,49 +36,11 @@ active
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Unit Kerja</h3>
+                    <h3 class="card-title">Data Acara</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th hidden>ID</th>
-                                <th>Tanggal</th>
-                                <th>Nama</th>
-                                <th>Kategori</th>
-                                <th hidden>Background</th>
-                                <th>Tempat</th>
-                                <th hidden>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($acara as $unit)
-                            <tr>
-                                <td hidden>{{$unit->id}}</td>
-                                <td>{{$unit->tanggal}}</td>
-                                <td>{{$unit->nama}}</td>
-                                <td>{{$unit->kategori}}</td>
-                                <td hidden>{{$unit->background}}</td>
-                                <td>{{$unit->tempat}}</td>
-                                <td hidden>{{$unit->status}}</td>
-                                <td></td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th hidden>ID</th>
-                                <th>Tanggal</th>
-                                <th>Nama</th>
-                                <th>Kategori</th>
-                                <th hidden>Background</th>
-                                <th>Tempat</th>
-                                <th hidden>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </tfoot>
+                    <table id="table1" class="table table-bordered table-striped">
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -96,27 +58,51 @@ active
 
 @section('script')
 @include('layouts.alert')
-<!-- DataTables  & Plugins -->
-<script src="{{asset('public/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('public/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('public/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('public/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-<script src="{{asset('public/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('public/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{asset('public/plugins/jszip/jszip.min.js')}}"></script>
-<script src="{{asset('public/plugins/pdfmake/pdfmake.min.js')}}"></script>
-<script src="{{asset('public/plugins/pdfmake/vfs_fonts.js')}}"></script>
-<script src="{{asset('public/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('public/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('public/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-
 <script>
-    $(function () {
-        $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    function edit(self){
+        var $modal=$('#sunting');
+        var tr = $(self).closest('tr');
+        let idx = oTable.row(tr)[0]
+        var data = oTable.data()[idx];
+        // console.log(data);
+        
+        $modal.find('input[name=id]').val(data['id']);
+        $modal.find('input[name=nama]').val(data['nama']);
+        $modal.find('input[name=kategori]').val(data['kategori']);
+        $modal.find('input[name=tgl_mulai]').val(data['tgl_mulai']);
+        $modal.find('input[name=tgl_selesai]').val(data['tgl_selesai']);
+        $modal.find('input[name=tempat]').val(data['tempat']);
 
+        $modal.modal('show');
+    }
+
+    function hapus(self){
+        var tr = $(self).closest('tr');
+        let idx = oTable.row(tr)[0]
+        var data = oTable.data()[idx];
+
+        $('#delete').find('input[name=id]').val(data['id']);
+        var $modal = $('#hapus');
+        $modal.modal('show');
+    }
+    
+    $(document).ready(function(){
+        oTable = $("#table1").DataTable({
+            
+            processing: true,
+            serverSide: true,
+            ajax: {type: "POST", url: '{{route("acara.data")}}', data:{'_token':@json(csrf_token())}},
+            columns: [
+                { data:'id', title:'ID', visible: false},
+                { data:'nama', title:'Nama'},
+                { data:'kategori', title:'Kategori'},
+                { data:'tgl_mulai', title:'Tanggal Pelaksanaan', render: function(e,d,row){
+                    return moment(row['tgl_mulai']).format('DD MMMM YYYY') + ' - ' + moment(row['tgl_selesai']).format('DD MMMM YYYY');
+                } },
+                { data:'tempat', title:'Tempat', visible: false},
+                { data:'action', title:'Aksi'},
+            ],
+        });
     });
 </script>
 @endsection

@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function (){
     Route::apiResource('peserta', PesertaController::class);
 
     Route::post('/peserta/data', 'PesertaController@data')->name('peserta.data');
+    Route::post('/acara/data', 'AcaraController@data')->name('acara.data');
 
     Route::put('/transaksi/add/{idacara}', 'TransaksiController@add')->name('transaksi.add');
     Route::put('/transaksi/update/{idacara}', 'TransaksiController@update')->name('transaksi.update');

@@ -337,7 +337,7 @@ active
                                         <td>{{$unit->unitkerja}}</td>
                                         <td>{{$unit->jabatan}}</td>
                                         <td>
-                                            <a href="{{route('transaksi.cetak',['idacara'=>$acara->idacara, 'idpeserta'=>$unit->id])}}" class="btn btn-info btn-sm"><i class="fas fa-print nav-icon"></i></a>
+                                            <a href="{{route('transaksi.cetak',['idacara'=>$acara->idacara, 'idpeserta'=>$unit->id])}}" class="btn btn-info btn-sm" target="_blank" rel="noreferrer noopener"><i class="fas fa-print nav-icon"></i></a>
                                             <button class="btn btn-danger btn-sm" onclick="hapus({{isset($unit->id) ? $unit->id : 0}})"><i class="fas fa-trash nav-icon"></i></button>
                                         </td>
                                     </tr>

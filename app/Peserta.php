@@ -15,10 +15,10 @@ class Peserta extends Model
         "nama",
         "tempatlahir",
         "tanggallahir",
-        "jeniskelamin",
         "alamat",
-        "nohp",
-        "status",
+        "unitkerja",
+        "jabatan",
+        "isactive",
     ];
 
     

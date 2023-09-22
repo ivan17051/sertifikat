@@ -22,11 +22,20 @@ class AcaraController extends Controller
         return view('master.acara', $d);
     }
 
-    public function data(Request $request)
-    {
-        $data = Acara::orderBy('tgl_mulai', 'DESC');
+    public function data(Request $request) {
+        // Lebih cepet pake raw() src: https://geekflare.com/laravel-optimization/
+        $data = Acara::raw('select * from macara');
+    
         $datatable = Datatables::of($data);
-        return $datatable->addIndexColumn()->make(true);
+        $datatable->rawColumns(['action']);
+        
+        $datatable->addColumn('action', function ($t) { 
+                return '<a href="'.route('acara.show', ['id'=>'0','idacara'=>$t->id]).'" class="btn btn-info btn-sm" style="padding:5px;width:30px;" target="_blank" rel="noreferrer noopener"><i class="fas fa-external-link-alt"></i></a>&nbsp'.
+                '<button type="button" class="btn btn-warning btn-sm" style="padding:5px;width:30px;" onclick="edit(this)"><i class="fas fa-pencil-alt"></i></button>&nbsp'.
+                '<button type="button" class="btn btn-danger btn-sm" style="padding:5px;width:30px;" onclick="hapus(this)"><i class="fas fa-trash"></i></button>';
+            });
+        
+        return $datatable->make(true); 
     }
 
     public function show($id, Request $request)
