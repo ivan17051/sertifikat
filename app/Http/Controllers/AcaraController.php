@@ -79,76 +79,20 @@ class AcaraController extends Controller
 
     public function store(Request $request)
     {
-        $user = Auth::user();
-        // dd($request->all());
         try {
             DB::beginTransaction();
 
-            $model = new Absensi();
+            $model = new Acara();
             $model->fill($request->all());
-
-            // Store untuk Izin
-            if (isset($request->keterangan)) {
-                $mime = $request->file('bukti_izin')->getMimeType();
-
-                $pattern = '/[a-zA-Z]+$/';
-                preg_match($pattern, $mime, $matches);
-                $mime = $matches[0];
-
-                $filename = date('dmY') . '_' . $user->id . '_izin.' . $mime;
-
-                $path = Storage::putFileAs(
-                    'photos/',
-                    $request->file('bukti_izin'),
-                    $filename
-                );
-
-                $url = url('/storage/app/photos/' . $filename);
-                $model->status = 4;
-
-                // Store Absen untuk Admin
-            } elseif ($user->role == 'admin') {
-                // Do Nothing (Gak perlu upload foto)
-                $model->status = isset($request->jam_plg) ? 3 : 1;
-
-                // Store untuk Absen
-            } else {
-                $mime = $request->file('geotag_msk')->getMimeType();
-
-                $pattern = '/[a-zA-Z]+$/';
-                preg_match($pattern, $mime, $matches);
-                $mime = $matches[0];
-
-                $filename = date('dmY') . '_' . $user->id . '_msk.' . $mime;
-
-                $path = Storage::putFileAs(
-                    'photos/',
-                    $request->file('geotag_msk'),
-                    $filename
-                );
-
-                $url = url('/storage/app/photos/' . $filename);
-
-                $model->status = 1;
-            }
-
-            $model->fill([
-                "iduser" => isset($request->iduser) ? $request->iduser : $user->id,
-                "tanggal" => isset($request->tanggal) ? $request->tanggal : date('Y-m-d'),
-                "geotag_msk" => isset($request->geotag_msk) ? $url : null,
-                "bukti_izin" => isset($request->bukti_izin) ? $url : null,
-            ]);
-
+    
             $model->save();
             DB::commit();
+
             return back()->with('success', 'Berhasil Menyimpan.');
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());
-        } catch (\Throwable $e) {
-            DB::rollBack();
-            return back()->with('error', 'Gagal memproses.');
-        }
+        } 
     }
 
     public function update($id, Request $request)
@@ -159,27 +103,7 @@ class AcaraController extends Controller
             DB::beginTransaction();
             $model = Absensi::findOrFail($id);
 
-            $mime = $request->file('geotag_plg')->getMimeType();
-
-            $pattern = '/[a-zA-Z]+$/';
-            preg_match($pattern, $mime, $matches);
-            $mime = $matches[0];
-
-            $filename = date('dmY') . '_' . $user->id . '_plg.' . $mime;
-
-            $path = Storage::putFileAs(
-                'photos/',
-                $request->file('geotag_plg'),
-                $filename
-            );
-
-            $url = url('/storage/app/photos/' . $filename);
-
-            $model->fill([
-                "jam_plg" => $request->jam_plg,
-                "geotag_plg" => $url,
-                "status" => 2,
-            ]);
+            $model->fill($request->all());
 
             $model->save();
             DB::commit();

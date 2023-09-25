@@ -9,6 +9,151 @@ active
 @endsection
 
 @section('content')
+<!-- Modal Tambah Peserta -->
+<div class="modal modal-danger fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="Tambah Acara"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahLabel">Tambah Acara</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('acara.store')}}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label><b>Nama</b></label>
+                                <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama Acara" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label><b>Kategori</b></label>
+                                <input type="text" id="kategori" name="kategori" class="form-control" placeholder="Kategori" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><b>Tempat Mulai</b></label>
+                                <input type="date" id="tgl_mulai" name="tgl_mulai" class="form-control" placeholder="Tanggal Mulai" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><b>Tanggal Selesai</b></label>
+                                <input type="date" id="tgl_selesai" name="tgl_selesai" class="form-control" placeholder="Tanggal Selesai" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label><b>Tempat</b></label>
+                                <input type="text" id="tempat" name="tempat" class="form-control" placeholder="Tempat Acara">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal Tambah Acara -->
+
+<!-- Modal Edit Peserta -->
+<div class="modal modal-danger fade" id="sunting" tabindex="-1" role="dialog" aria-labelledby="Edit Peserta"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahLabel">Edit Peserta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('peserta.update', ['id'=>'0'])}}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label><b>Nama</b></label>
+                                <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama Acara" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label><b>Kategori</b></label>
+                                <input type="text" id="kategori" name="kategori" class="form-control" placeholder="Kategori" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><b>Tempat Mulai</b></label>
+                                <input type="date" id="tgl_mulai" name="tgl_mulai" class="form-control" placeholder="Tanggal Mulai" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label><b>Tanggal Selesai</b></label>
+                                <input type="date" id="tgl_selesai" name="tgl_selesai" class="form-control" placeholder="Tanggal Selesai" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label><b>Tempat</b></label>
+                                <input type="text" id="tempat" name="tempat" class="form-control" placeholder="Tempat Acara">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal Edit Peserta -->
+
+<!-- Modal Hapus Peserta -->
+<div class="modal modal-danger fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="Hapus Peserta"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahLabel">Hapus Peserta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('peserta.destroy', ['id'=>'0'])}}" method="POST" id="delete">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body">
+                    <input type="hidden" name="id">
+                    Anda Yakin Ingin Hapus Data?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal Hapus Peserta -->
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper" style="@if(!Auth::user())margin-left: 0; @endif">
@@ -36,7 +181,14 @@ active
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Data Acara</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="card-title">Data Acara</h3>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambah">Tambah</button>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -64,7 +216,6 @@ active
         var tr = $(self).closest('tr');
         let idx = oTable.row(tr)[0]
         var data = oTable.data()[idx];
-        // console.log(data);
         
         $modal.find('input[name=id]').val(data['id']);
         $modal.find('input[name=nama]').val(data['nama']);

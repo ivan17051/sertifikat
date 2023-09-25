@@ -155,7 +155,7 @@ active
 </div>
 <!-- End Modal Edit Peserta -->
 
-<!-- Form -->
+<!-- Modal Hapus Peserta -->
 <div class="modal modal-danger fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="Hapus Peserta"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -181,6 +181,7 @@ active
         </div>
     </div>
 </div>
+<!-- End Modal Hapus Peserta -->
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
