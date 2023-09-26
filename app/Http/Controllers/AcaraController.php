@@ -30,9 +30,15 @@ class AcaraController extends Controller
         $datatable->rawColumns(['action']);
         
         $datatable->addColumn('action', function ($t) { 
+            if($t->status==0){
                 return '<a href="'.route('acara.show', ['id'=>'0','idacara'=>$t->id]).'" class="btn btn-info btn-sm" style="padding:5px;width:30px;" target="_blank" rel="noreferrer noopener"><i class="fas fa-external-link-alt"></i></a>&nbsp'.
                 '<button type="button" class="btn btn-warning btn-sm" style="padding:5px;width:30px;" onclick="edit(this)"><i class="fas fa-pencil-alt"></i></button>&nbsp'.
                 '<button type="button" class="btn btn-danger btn-sm" style="padding:5px;width:30px;" onclick="hapus(this)"><i class="fas fa-trash"></i></button>';
+            } else {
+                return '<a href="'.route('acara.show', ['id'=>'0','idacara'=>$t->id]).'" class="btn btn-info btn-sm" style="padding:5px;width:30px;" target="_blank" rel="noreferrer noopener"><i class="fas fa-external-link-alt"></i></a>&nbsp'.
+                '<button type="button" class="btn btn-warning btn-sm" style="padding:5px;width:30px;" onclick="edit(this)"><i class="fas fa-pencil-alt"></i></button>&nbsp';
+            }
+                
             });
         
         return $datatable->make(true); 
@@ -55,6 +61,10 @@ class AcaraController extends Controller
                 $model = new Transaksi();
                 $model->idacara = $request->idacara;
                 $model->save();
+
+                $acara = Acara::findOrFail($request->idacara);
+                $acara->status = 1;
+                $acara->save();
 
                 return redirect('/acara/0?idacara='.$request->idacara);
             }
@@ -117,22 +127,12 @@ class AcaraController extends Controller
         }
     }
 
-    // Untuk menampilkan Foto yang ada di Server
-    public function showDestroy()
-    {
-        $files = Storage::files('photos');
-        return view('showFoto', ['foto'=>$files]);
-    }
-
     public function destroy(Request $request, $id)
     {
+        // dd($id, $request->all());
         try {
-            $model = Absensi::where('status', 3)->get();
-
-            foreach ($model as $unit) {
-                Storage::delete(substr($unit->geotag_msk, 37));
-                Storage::delete(substr($unit->geotag_plg, 37));
-            }
+            $model = Acara::findOrFail($request->id);
+            $model->delete();
 
             return back()->with('success', 'Berhasil menghapus');
         } catch (\Throwable $th) {

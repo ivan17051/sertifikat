@@ -31,7 +31,10 @@ class TransaksiController extends Controller
         $d['acara'] = Transaksi::where('idacara', $idacara)->with('acara')->first();
         $d['peserta'] = Peserta::findOrFail($request->idpeserta);
 
-        return view('cetak.cetak1', $d);
+        if($d['acara']->jns_sertif == 1) return view('cetak.cetak1', $d);
+        elseif($d['acara']->jns_sertif == 2) return view('cetak.cetak2', $d);
+        elseif($d['acara']->jns_sertif == 3) return view('cetak.cetak3', $d);
+        
     }
 
     public function upload($id, Request $request){
@@ -56,6 +59,7 @@ class TransaksiController extends Controller
             $url = url('/storage/app/photos/' . $filename);
             
             $data->background = $url;
+            $data->jns_sertif = $request->jns_sertif;
             $data->save();
 
         } catch (\Throwable $th) {

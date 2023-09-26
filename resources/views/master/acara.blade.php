@@ -133,12 +133,12 @@ active
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahLabel">Hapus Peserta</h5>
+                <h5 class="modal-title" id="tambahLabel">Hapus Acara</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('peserta.destroy', ['id'=>'0'])}}" method="POST" id="delete">
+            <form action="{{route('acara.destroy', ['id'=>'0'])}}" method="POST" id="delete">
                 @csrf
                 @method('DELETE')
                 <div class="modal-body">
