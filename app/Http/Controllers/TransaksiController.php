@@ -59,7 +59,6 @@ class TransaksiController extends Controller
             $url = url('/storage/app/photos/' . $filename);
             
             $data->background = $url;
-            $data->jns_sertif = $request->jns_sertif;
             $data->save();
 
         } catch (\Throwable $th) {
@@ -73,6 +72,8 @@ class TransaksiController extends Controller
             $model = Transaksi::findOrFail($id);
             $model->tgl_surat = $request->tgl_surat;
             $model->no_surat = $request->no_surat;
+            $model->jns_sertif = $request->jns_sertif;
+            
             $model->save();
 
         } catch (\Throwable $th) {

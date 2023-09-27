@@ -35,11 +35,7 @@ active
                 <div class="col-md-3"></div>
 
                 <div class="col-md-6 text-center">
-                    <h5>Silahkan cari Acara terlebih dahulu dengan klik tombol di bawah ini</h5>
-                    <a href="{{route('acara.index')}}" class="btn btn-primary btn-lg mt-3"
-                        style="min-width: 40%;">Cari</a>
-                    <h5 class="mt-4 mb-3 text-primary"><b>ATAU</b></h5>
-                    <h5>Cari dari pilihan Acara di bawah</h5>
+                    <h5>Silahkan cari Acara terlebih dahulu dari pilihan di bawah</h5>
                     <form action="{{route('acara.show',['id'=>''])}}/0" method="get">
                         <div class="row mt-3">
                             <div class="col-md-9">
@@ -127,14 +123,25 @@ active
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="tgl_surat">Tanggal Surat</label>
+                                <label for="tgl_surat">Tanggal Sertifikat</label>
                                 <input type="date" class="form-control" name="tgl_surat" value="{{$acara->tgl_surat}}">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="no_surat">Nomor Surat</label>
+                                <label for="no_surat">Nomor Sertifikat</label>
                                 <input type="text" class="form-control" name="no_surat" value="{{$acara->no_surat}}">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="background">Jenis Sertifikat</label>
+                                <select name="jns_sertif" id="jns_sertif" class="form-control select2">
+                                    <option value="" @if(isset($acara->jns_sertif)) selected @endif disabled> --Pilih-- </option>
+                                    <option value="1" @if($acara->jns_sertif == 1) selected @endif>Layak Higiene Sanitasi Makanan</option>
+                                    <option value="2" @if($acara->jns_sertif == 2) selected @endif>Pelatihan Tenaga Kesehatan</option>
+                                    <option value="3" @if($acara->jns_sertif == 3) selected @endif>Piagam Penghargaan</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -201,15 +208,6 @@ active
                                 <label class="custom-file-label" for="background">Pilih Foto</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="background">Jenis Sertifikat</label>
-                        <select name="jns_sertif" id="jns_sertif" class="form-control select2">
-                            <option value="" @if(isset($acara->jns_sertif)) selected @endif disabled> --Pilih-- </option>
-                            <option value="1" @if($acara->jns_sertif == 1) selected @endif>Layak Higiene Sanitasi Makanan</option>
-                            <option value="2" @if($acara->jns_sertif == 2) selected @endif>Pelatihan Tenaga Kesehatan</option>
-                            <option value="3" @if($acara->jns_sertif == 3) selected @endif>Piagam Penghargaan</option>
-                        </select>
                     </div>
                 </div>
                 
@@ -299,6 +297,18 @@ active
 
                             <strong><i class="fas fa-calendar-check mr-1"></i> Tanggal Sertifikat</strong>
                             <p class="text-muted">{{isset($acara->tgl_surat) ? \Carbon\Carbon::make($acara->tgl_surat)->translatedFormat('d M Y') : '-'}}</p>
+                            <hr>
+                            
+                            <strong><i class="fas fa-bars mr-1"></i> Jenis Sertifikat</strong>
+                            @if($acara->jns_sertif==1)
+                            <p class="text-muted">Layak Higiene Sanitasi Makanan</p>
+                            @elseif($acara->jns_sertif==2)
+                            <p class="text-muted">Pelatihan Tenaga Kesehatan</p>
+                            @elseif($acara->jns_sertif==3)
+                            <p class="text-muted">Piagam Penghargaan</p>
+                            @else
+                            <p class="text-muted">-</p>
+                            @endif  
 
                         </div>
                         <!-- /.card-body -->
