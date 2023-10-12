@@ -16,7 +16,7 @@ active
 <!-- Modal Tambah Peserta -->
 <div class="modal modal-danger fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="Tambah Peserta"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="tambahLabel">Tambah Peserta</h5>
@@ -26,50 +26,68 @@ active
             </div>
             <form action="{{route('peserta.store')}}" method="POST">
                 @csrf
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label><b>NIK</b></label>
-                                <input type="text" id="nik" name="nik" class="form-control" placeholder="NIK" maxlength="16" required>
+                <div class="modal-body row">
+                    <div class="col-md-3">
+                        <svg width="4cm" height="6cm" class="pasfoto mt-2">
+                            <rect width="4cm" height="6cm" style="fill:#DDDDDD;" />
+                            <text x="23%" y="55%" fill="grey" style="font-size:25px;">Pasfoto</text>
+                            Sorry, your browser does not support inline SVG.  
+                        </svg>
+                        <div class="form-group mt-3">
+                            <label for="background">Upload Pasfoto</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="pasfoto" name="pasfoto">
+                                    <label class="custom-file-label" for="pasfoto">Pilih Foto</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                <label><b>Nama</b></label>
-                                <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama" required>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label><b>NIK</b></label>
+                                    <input type="text" id="nik" name="nik" class="form-control" placeholder="NIK" maxlength="16" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                <label><b>Tempat Lahir</b></label>
-                                <input type="text" id="tempatlahir" name="tempatlahir" class="form-control" placeholder="Tempat Lahir">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label><b>Nama</b></label>
+                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label><b>Tanggal Lahir</b></label>
-                                <input type="date" id="tanggallahir" name="tanggallahir" class="form-control" placeholder="Tanggal Lahir">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label><b>Tempat Lahir</b></label>
+                                    <input type="text" id="tempatlahir" name="tempatlahir" class="form-control" placeholder="Tempat Lahir">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label><b>Alamat</b></label>
-                                <input type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label><b>Tanggal Lahir</b></label>
+                                    <input type="date" id="tanggallahir" name="tanggallahir" class="form-control" placeholder="Tanggal Lahir">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label><b>Unit Kerja</b></label>
-                                <input type="text" id="unitkerja" name="unitkerja" class="form-control" placeholder="Unit Kerja" required>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label><b>Alamat</b></label>
+                                    <input type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label><b>Jabatan</b></label>
-                                <input type="text" id="jabatan" name="jabatan" class="form-control" placeholder="Jabatan">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label><b>Unit Kerja</b></label>
+                                    <input type="text" id="unitkerja" name="unitkerja" class="form-control" placeholder="Unit Kerja" required>
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label><b>Jabatan</b></label>
+                                    <input type="text" id="jabatan" name="jabatan" class="form-control" placeholder="Jabatan">
+                                </div>
+                            </div>
+                        </div>    
                     </div>
                     
                 </div>
@@ -86,7 +104,7 @@ active
 <!-- Modal Edit Peserta -->
 <div class="modal modal-danger fade" id="sunting" tabindex="-1" role="dialog" aria-labelledby="Edit Peserta"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="tambahLabel">Edit Peserta</h5>
@@ -94,52 +112,73 @@ active
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="" method="post" enctype="multipart/form-data" id="photo-form" style="display: none;">
+                @csrf
+                <input type="file" id="photo" name="pasfoto" hidden>
+            </form>
             <form action="{{route('peserta.update', ['id'=>'0'])}}" method="POST">
                 @csrf
                 @method('PUT')
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="id">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label><b>NIK</b></label>
-                                <input type="text" id="nik" name="nik" class="form-control" placeholder="NIK" maxlength="16" required>
-                            </div>
+                <div class="modal-body row">
+                    <div class="col-md-3 text-center">
+                        <div id="no-foto">
+                            <svg width="4cm" height="6cm" class="pasfoto mt-2">
+                                <rect width="4cm" height="6cm" style="fill:#DDDDDD;" />
+                                <text x="23%" y="55%" fill="grey" style="font-size:25px;">Pasfoto</text>
+                                Sorry, your browser does not support inline SVG.  
+                            </svg>
                         </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                <label><b>Nama</b></label>
-                                <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama" required>
-                            </div>
+                        <div id="is-foto" hidden>
+                            <img src="" class="pasfoto mt-2" id="pasfotoEdit" alt="Pasfoto">
                         </div>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                <label><b>Tempat Lahir</b></label>
-                                <input type="text" id="tempatlahir" name="tempatlahir" class="form-control" placeholder="Tempat Lahir">
-                            </div>
+                        <div class="mt-3 text-center">
+                            <button class="btn btn-primary" type="button" id="trigger-photo">Upload Foto</button>
                         </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label><b>Tanggal Lahir</b></label>
-                                <input type="date" id="tanggallahir" name="tanggallahir" class="form-control" placeholder="Tanggal Lahir">
+                    </div>
+                    <div class="col-md-9">
+                        <input type="hidden" name="id" id="id">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label><b>NIK</b></label>
+                                    <input type="text" id="nik" name="nik" class="form-control" placeholder="NIK" maxlength="16" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label><b>Alamat</b></label>
-                                <input type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label><b>Nama</b></label>
+                                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label><b>Unit Kerja</b></label>
-                                <input type="text" id="unitkerja" name="unitkerja" class="form-control" placeholder="Unit Kerja" required>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label><b>Tempat Lahir</b></label>
+                                    <input type="text" id="tempatlahir" name="tempatlahir" class="form-control" placeholder="Tempat Lahir">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label><b>Jabatan</b></label>
-                                <input type="text" id="jabatan" name="jabatan" class="form-control" placeholder="Jabatan">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label><b>Tanggal Lahir</b></label>
+                                    <input type="date" id="tanggallahir" name="tanggallahir" class="form-control" placeholder="Tanggal Lahir">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label><b>Alamat</b></label>
+                                    <input type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label><b>Unit Kerja</b></label>
+                                    <input type="text" id="unitkerja" name="unitkerja" class="form-control" placeholder="Unit Kerja" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label><b>Jabatan</b></label>
+                                    <input type="text" id="jabatan" name="jabatan" class="form-control" placeholder="Jabatan">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -268,6 +307,15 @@ active
         $modal.find('input[name=alamat]').val(data['alamat']);
         $modal.find('input[name=unitkerja]').val(data['unitkerja']);
         $modal.find('input[name=jabatan]').val(data['jabatan']);
+        
+        if(data['pasfoto']) {
+            $('#pasfotoEdit').attr('src',data['pasfoto']).change();
+            $('#no-foto').attr('hidden', true);
+            $('#is-foto').attr('hidden', false);
+        } else {
+            $('#no-foto').attr('hidden', false);
+            $('#is-foto').attr('hidden', true);
+        }
 
         $modal.modal('show');
     }
@@ -281,6 +329,28 @@ active
         var $modal = $('#hapus');
         $modal.modal('show');
     }
+
+    $("#trigger-photo").click(function(){
+        $("#photo").click();
+    });
+
+    document.getElementById("photo").onchange = async function() {
+        file=$(this)[0].files[0];
+        var idpeserta = $('#sunting').find('input[name=id]').val();
+        
+        try {
+            var formData = new FormData();
+            formData.append('_token', "{{ csrf_token() }}");
+            formData.append('idpeserta', idpeserta);
+            var newfile = await my.noMoreBigFile(file);
+            formData.append('pasfoto', newfile);
+            const res = await myRequest.upload( "{{route('peserta.upload')}}" , formData);
+            window.location.reload();
+        } catch (err) {
+            // console.log('ayee'+err);
+            alert('Terjadi kesalahan, pastikan file berupa gambar.');
+        }
+    };
     
     $(document).ready(function(){
         oTable = $("#table1").DataTable({

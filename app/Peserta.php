@@ -18,6 +18,7 @@ class Peserta extends Model
         "alamat",
         "unitkerja",
         "jabatan",
+        "pasfoto",
         "isactive",
     ];
 

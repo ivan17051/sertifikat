@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+use Storage;
 use DB;
 use App\Peserta;
 use Datatables;
@@ -30,7 +30,39 @@ class PesertaController extends Controller
         return $datatable->make(true); 
     }
 
+    public function upload(Request $request){
+        // dd($request->all());
+        try {
+            $data = Peserta::findOrFail($request->idpeserta);
+            // dd($data, $request->all());
+            $mime = $request->file('pasfoto')->getMimeType();
+            // dd($data, $mime);
+            $pattern = '/[a-zA-Z]+$/';
+            preg_match($pattern, $mime, $matches);
+            $mime = $matches[0];
+
+            $filename = $request->idpeserta . '.' . $mime;
+
+                $path = Storage::putFileAs(
+                    'pasfoto/',
+                    $request->file('pasfoto'),
+                    $filename
+                );
+
+            $url = url('/storage/app/pasfoto/' . $filename);
+            
+            $data->pasfoto = $url;
+            
+            $data->save();
+
+        } catch (\Throwable $th) {
+            return back()->with('error', 'Gagal mengupload');
+        }
+        return back()->with('success', 'Berhasil mengupload');
+    }
+
     public function store(Request $request){
+        dd($request->all());
 
         try {
             DB::beginTransaction();

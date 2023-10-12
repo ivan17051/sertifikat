@@ -17,6 +17,7 @@ class Transaksi extends Model
         "tgl_surat",
 	    "jumpeserta",
         "background",
+        "background2",
         "jns_sertif",
     ];
 

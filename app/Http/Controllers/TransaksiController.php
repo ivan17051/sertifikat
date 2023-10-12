@@ -38,27 +38,38 @@ class TransaksiController extends Controller
     }
 
     public function upload($id, Request $request){
-        
+        // dd($id, $request->all());
         try {
             $data = Transaksi::findOrFail($id);
+            $key = $request->key;
 
-            $mime = $request->file('background')->getMimeType();
+            if($key == 1) $mime = $request->file('background')->getMimeType();
+            elseif($key == 2) $mime = $request->file('background2')->getMimeType();
 
             $pattern = '/[a-zA-Z]+$/';
             preg_match($pattern, $mime, $matches);
             $mime = $matches[0];
 
-            $filename = $id . '.' . $mime;
+            $filename = $id . '_' . $key . '.' . $mime;
 
-            $path = Storage::putFileAs(
-                'photos/',
-                $request->file('background'),
-                $filename
-            );
+            if($key == 1){
+                $path = Storage::putFileAs(
+                    'photos/',
+                    $request->file('background'),
+                    $filename
+                );
+            } elseif($key == 2){
+                $path = Storage::putFileAs(
+                    'photos/',
+                    $request->file('background2'),
+                    $filename
+                );
+            }
 
             $url = url('/storage/app/photos/' . $filename);
             
-            $data->background = $url;
+            if($key == 1) $data->background = $url;
+            elseif($key == 2) $data->background2 = $url;
             $data->save();
 
         } catch (\Throwable $th) {

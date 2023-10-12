@@ -187,13 +187,13 @@ active
 <div class="modal fade" id="modalLihat">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-secondary">
-                <h4 class="modal-title">Background Sertifikat</h4>
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title">Background 1 Sertifikat</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('transaksi.upload',['id'=>$acara->id])}}" method="post" id="formLihat" enctype="multipart/form-data">
+            <form action="{{route('transaksi.upload',['id'=>$acara->id, 'key'=>1])}}" method="post" id="formLihat" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -206,6 +206,43 @@ active
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="background" name="background">
                                 <label class="custom-file-label" for="background">Pilih Foto</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modalLihat2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h4 class="modal-title">Background 2 Sertifikat</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('transaksi.upload',['id'=>$acara->id, 'key'=>2])}}" method="post" id="formLihat" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    @if(isset($acara->background2))
+                    <img src="{{asset($acara->background2)}}" alt="" style="width: 100%;">
+                    @endif
+                    <div class="form-group">
+                        <label for="background">Upload Background 2</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="background2" name="background2">
+                                <label class="custom-file-label" for="background2">Pilih Foto</label>
                             </div>
                         </div>
                     </div>
@@ -261,22 +298,25 @@ active
                                         $acara->jumpeserta : '0'}}</a>
                                 </li>
                             </ul>
-
-                            <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalLihat"><b>Background</b></button>
+                            <div class="btn-group btn-block" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLihat">Background 1</button>
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalLihat2">Background 2</button>
+                            </div>
+                            <!-- <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalLihat"><b>Background</b></button> -->
                         </div>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
 
                     <!-- About Me Box -->
-                    <div class="card card-primary">
+                    <div class="card card-warning">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-6">
                                     <h3 class="card-title">Tentang</h3>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <button class="btn btn-light btn-sm" data-toggle="modal" data-target="#modalEdit"><i class="fas fa-pencil-alt"></i> Edit</button>
+                                    <button class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#modalEdit"><i class="fas fa-pencil-alt"></i> Edit</button>
                                 </div>
                             </div>
                         </div>
@@ -324,7 +364,7 @@ active
                                     <h3 class="card-title">Data Peserta</h3>
                                 </div>
                                 <div class="col-md-4 text-right">
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal"
+                                    <button class="btn btn-info btn-sm" data-toggle="modal"
                                         data-target="#modalTambah">Tambah Peserta</button>
                                 </div>
                             </div>

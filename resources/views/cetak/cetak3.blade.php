@@ -28,6 +28,26 @@
             /* Do not repeat the image */
             background-size: 100%;
             /* Resize the background image to cover the entire container */
+            background-position: center;
+            background-size: cover;
+        }
+
+        .background2 {
+            background-image: url('{{asset($acara->background2)}}');
+            background-repeat: no-repeat;
+            /* Do not repeat the image */
+            background-size: 100%;
+            /* Resize the background image to cover the entire container */
+            background-position: center;
+            background-size: cover;
+        }
+
+        .pasfoto {
+            width:4cm; 
+            height:6cm; 
+            margin-left:4cm;
+            border: 2px solid #7d7d7d;
+            padding: 2px;
         }
     </style>
 </head>
@@ -127,6 +147,91 @@
                                                     </div>
 
                                                 </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="color: #fff;">.</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="screen lebar lebarKertasTidur page-break background2">
+        <tbody>
+            <tr>
+                <td style="color: #fff;height: 30mm;">.</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="jarak">
+                    <table class="lebarTabelTidur" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td class=""></td>
+                            </tr>
+
+                            <tr style="margin-bottom:20px;">
+                                <td class="fontCenter paddingfont" style="font-size:17px"></td>
+                            </tr>
+                            <tr>
+                                <td><br><br></td>
+                            </tr>
+                            <tr>
+                                <td class="fontCenter paddingfont" style="font-size:17px"></td>
+                            </tr>
+                            <tr>
+                                <td class="fontCenter paddingfont" style="font-size:22px"></td>
+                            </tr>
+                            <tr>
+                                <td class="fontCenter paddingfont" style="font-size:17px"></td>
+                            </tr>
+                            <tr>
+                                <td><br><br></td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="fontCenter paddingfont" style="font-size: 17px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="headerFont fontCenter paddingfont" style="font-size:22px"></td>
+                            </tr>
+                            <tr>
+                                <td class="fontCenter paddingfont" style="font-size: 17px;"></td>
+                            </tr>
+                            <tr>
+                                <td><br><br></td>
+                            </tr>
+                            <tr>
+                                <td><br><br></td>
+                            </tr>
+                            <tr>
+                                <td><br><br></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="50%">
+                                                    @if(isset($peserta->pasfoto))
+                                                    <img src="{{$peserta->pasfoto}}" class="pasfoto" alt="Pasfoto">
+                                                    @else
+                                                    <svg width="4cm" height="6cm" class="pasfoto">
+                                                        <rect width="4cm" height="6cm" style="fill:#DDDDDD;" />
+                                                        <text x="23%" y="55%" fill="grey" style="font-size:25px;">Pasfoto</text>
+                                                        Sorry, your browser does not support inline SVG.  
+                                                    </svg>
+                                                    @endif
+                                                </td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
