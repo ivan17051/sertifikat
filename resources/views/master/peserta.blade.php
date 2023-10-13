@@ -24,7 +24,7 @@ active
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('peserta.store')}}" method="POST">
+            <form action="{{route('peserta.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body row">
                     <div class="col-md-3">

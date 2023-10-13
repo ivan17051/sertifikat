@@ -31,12 +31,12 @@ class PesertaController extends Controller
     }
 
     public function upload(Request $request){
-        // dd($request->all());
+        
         try {
             $data = Peserta::findOrFail($request->idpeserta);
-            // dd($data, $request->all());
+            
             $mime = $request->file('pasfoto')->getMimeType();
-            // dd($data, $mime);
+            
             $pattern = '/[a-zA-Z]+$/';
             preg_match($pattern, $mime, $matches);
             $mime = $matches[0];
@@ -62,13 +62,31 @@ class PesertaController extends Controller
     }
 
     public function store(Request $request){
-        dd($request->all());
 
         try {
-            DB::beginTransaction();
+            DB::beginTransaction();     
 
             $model = new Peserta();
             $model->fill($request->all());
+
+            $model->save();
+
+            $mime = $request->file('pasfoto')->getMimeType();
+
+            $pattern = '/[a-zA-Z]+$/';
+            preg_match($pattern, $mime, $matches);
+            $mime = $matches[0];
+
+            $filename = $model->id . '.' . $mime;
+
+                $path = Storage::putFileAs(
+                    'pasfoto/',
+                    $request->file('pasfoto'),
+                    $filename
+                );
+
+            $url = url('/storage/app/pasfoto/' . $filename);
+            $model->pasfoto = $url;
 
             $model->save();
             

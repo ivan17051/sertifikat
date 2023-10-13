@@ -28,6 +28,24 @@
             background-repeat: no-repeat; /* Do not repeat the image */
             background-size: cover; /* Resize the background image to cover the entire container */
         }
+
+        .background2 {
+            background-image: url('{{asset($acara->background2)}}');
+            background-repeat: no-repeat;
+            /* Do not repeat the image */
+            background-size: 100%;
+            /* Resize the background image to cover the entire container */
+            background-position: center;
+            background-size: cover;
+        }
+
+        .pasfoto {
+            width:4cm; 
+            height:6cm; 
+            margin-left:1.2cm;
+            border: 2px solid #7d7d7d;
+            padding: 2px;
+        }
     </style>
 </head>
 
@@ -179,6 +197,137 @@
                                                     </div>
 
                                                 
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr>
+                <td style="color: #fff;">.</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="screen panjang lebarKertasTegak page-break background2">
+        <tbody>
+            <tr><td style="color: #fff;height: 100mm;">.</td></tr>
+            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td class="jarak">
+                    <table class="lebarTabelTegak" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td class=""></td>
+                            </tr>
+                            <tr style="margin-bottom:30px;">
+                                <td class="headerFont fontCenter paddingfont" style="font-size:16px">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fontCenter paddingfont" style="font-size:16px"></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <table class="table-padding" width="100%" cellspacing="0" cellpadding="0"
+                                        border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width:5%;"></td>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                                <td class="paddingfont" style="font-size:15px" colspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                                <td class="paddingfont" style="font-size:15px" colspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                                <td class="paddingfont" style="font-size:15px" colspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="2"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="font-size:15px" colspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="width:35%;font-size: 15px;"></td>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                                <td class="paddingfont" style="font-size:15px"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="2"></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td class="paddingfont" style="font-size:15px" colspan="2"></td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><br><br></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td width="45%" class="keterangan">
+                                                    @if(isset($peserta->pasfoto))
+                                                    <img src="{{$peserta->pasfoto}}" class="pasfoto" alt="Pasfoto">
+                                                    @else
+                                                    <svg width="4cm" height="6cm" class="pasfoto">
+                                                        <rect width="4cm" height="6cm" style="fill:#DDDDDD;" />
+                                                        <text x="23%" y="55%" fill="grey" style="font-size:25px;">Pasfoto</text>
+                                                        Sorry, your browser does not support inline SVG.  
+                                                    </svg>
+                                                    @endif
+                                                </td>
+                                                <td class="fontBold">
+                                                    
                                                 </td>
                                             </tr>
                                         </tbody>
