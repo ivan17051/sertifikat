@@ -13,12 +13,12 @@ class Controller extends BaseController
 
     public function flashSuccess($message)
     {
-        $this->setupFlash('check', $message, '3');
+        $this->setupFlash('success', $message, '3');
     }
 
     public function flashError($message)
     {
-        $this->setupFlash('close', $message, '2');
+        $this->setupFlash('error', $message, '2');
     }
 
     private function setupFlash($icon, $message, $type)

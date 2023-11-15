@@ -253,16 +253,30 @@
     <script src="{{asset('public/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
     <!-- Select2 -->
     <script src="{{asset('public/plugins/select2/js/select2.full.min.js')}}"></script>
+    <!-- SweetAlert2 -->
+    <script src="{{asset('public/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 
     <script src="{{asset('public/js/custom.js')}}"></script>
 
     <script>
-        @if (session() -> exists('alert'))
+        
+
+        @if(session()->exists('alert'))
             $(document).ready(function () {
-                notification = @json(session() -> pull("alert"));
-                md.showNotification(notification.icon, notification.status, notification.message);
+                notification = @json(session()->pull("alert"));
+                // showNotification(notification.icon, notification.status, notification.message);
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                Toast.fire({
+                    icon: notification.icon,
+                    title: notification.message,
+                });
                 @php
-                session() -> forget('alert');
+                session()->forget('alert');
                 @endphp
             });
         @endif

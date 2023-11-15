@@ -56,9 +56,11 @@ class PesertaController extends Controller
             $data->save();
 
         } catch (\Throwable $th) {
-            return back()->with('error', 'Gagal mengupload');
+            $this->flashError('Gagal Mengupload');
+            return back();
         }
-        return back()->with('success', 'Berhasil mengupload');
+        $this->flashSuccess('Berhasil Mengupload');
+        return back();
     }
 
     public function store(Request $request){
@@ -92,11 +94,13 @@ class PesertaController extends Controller
             
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', $e->getMessage());
+            $this->flashError($e->getMessage());
+            return back();
         }
         
         DB::commit();
-        return back()->with('success', 'Berhasil Menyimpan.');
+        $this->flashSuccess('Berhasil Menyimpan');
+        return back();
     }
 
     public function update(Request $request, $id){
@@ -111,11 +115,13 @@ class PesertaController extends Controller
             
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', $e->getMessage());
+            $this->flashError($e->getMessage());
+            return back();
         } 
         
         DB::commit();
-        return back()->with('success', 'Berhasil Menyimpan.');
+        $this->flashSuccess('Berhasil Menyimpan');
+        return back();
             
     }
 
@@ -130,11 +136,13 @@ class PesertaController extends Controller
             
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', $e->getMessage());
+            $this->flashError($e->getMessage());
+            return back();
         } 
         
         DB::commit();
-        return back()->with('success', 'Berhasil Menghapus.');
+        $this->flashSuccess('Berhasil Menghapus');
+        return back();
             
     }
 }

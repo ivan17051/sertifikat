@@ -78,7 +78,7 @@ active
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('peserta.update', ['id'=>'0'])}}" method="POST">
+            <form action="{{route('acara.update', ['id'=>'0'])}}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">

@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Acara;
-use App\User;
 use App\Transaksi;
 use App\Peserta;
 use Auth;
 use Datatables;
 use DB;
-use Illuminate\Support\Facades\Storage;
 
 class AcaraController extends Controller
 {
@@ -83,7 +81,7 @@ class AcaraController extends Controller
             $d['allPeserta'] = Peserta::whereNotIn('id', $d['user'])->get(['id','nama']);
 
         }
-        
+        $this->flashSuccess('Berhasil Get Data Acara');
         return view('sertifikat', $d);
     }
 
@@ -98,10 +96,12 @@ class AcaraController extends Controller
             $model->save();
             DB::commit();
 
-            return back()->with('success', 'Berhasil Menyimpan.');
+            $this->flashSuccess('Berhasil Menyimpan');
+            return back();
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', $e->getMessage());
+            $this->flashError($e->getMessage());
+            return back();
         } 
     }
 
@@ -111,58 +111,36 @@ class AcaraController extends Controller
 
         try {
             DB::beginTransaction();
-            $model = Absensi::findOrFail($id);
+            $model = Acara::findOrFail($request->id);
 
             $model->fill($request->all());
 
             $model->save();
             DB::commit();
-            return back()->with('success', 'Berhasil Menyimpan.');
+            $this->flashSuccess('Berhasil Menyimpan');
+            return back();
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', $e->getMessage());
+            $this->flashError($e->getMessage());
+            return back();
         } catch (\Throwable $e) {
             DB::rollBack();
-            return back()->with('error', 'Gagal memproses.');
+            $this->flashError('Gagal Memproses');
+            return back();
         }
     }
 
     public function destroy(Request $request, $id)
     {
-        // dd($id, $request->all());
         try {
             $model = Acara::findOrFail($request->id);
             $model->delete();
 
-            return back()->with('success', 'Berhasil menghapus');
+            $this->flashSuccess('Berhasil Menghapus');
+            return back();
         } catch (\Throwable $th) {
-            return back()->with('error', 'Gagal menghapus');
+            $this->flashError('Gagal Menghapus');
+            return back();
         }
-    }
-
-    public function showVerifikasi(Request $request)
-    {
-        $d['tanggal'] = isset($request->tanggal) ? $request->tanggal : date('Y-m-d');
-        $d['absen'] = Absensi::where('tanggal', $d['tanggal'])->get();
-        $d['user'] = User::where('isactive', 1)->whereNotIn('id', [1, 2])->get(['id', 'nama']);
-
-        return view('verifikasi', $d);
-    }
-
-    public function verifikasi(Request $request, $id)
-    {
-        $absen = Absensi::findOrFail($id);
-        if ($absen->status == 4) {
-            $absen->status = 5;
-        } else {
-            $absen->fill($request->all());
-            $absen->status = 3;
-
-            Storage::delete(substr($absen->geotag_msk, 37));
-            Storage::delete(substr($absen->geotag_plg, 37));
-        }
-        $absen->save();
-
-        return back();
     }
 }
