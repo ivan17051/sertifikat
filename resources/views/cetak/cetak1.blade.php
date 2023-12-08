@@ -40,8 +40,8 @@
         }
 
         .pasfoto {
-            width:4cm; 
-            height:6cm; 
+            width:3.6cm; 
+            height:5.5cm; 
             margin-left:1.2cm;
             border: 2px solid #7d7d7d;
             padding: 2px;
@@ -53,7 +53,7 @@
     <div style="margin-top: 10mm;"></div>
     <table class="screen panjang lebarKertasTegak page-break background">
         <tbody>
-            <tr><td style="color: #fff;height: 100mm;">.</td></tr>
+            <tr><td style="color: #fff;height: 80mm;">.</td></tr>
             <tr><td>&nbsp;</td></tr>
             <tr>
                 <td class="jarak">
@@ -71,7 +71,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="fontCenter paddingfont" style="font-size:16px">NOMOR : {{$acara->no_surat}}</td>
+                                <td class="fontCenter paddingfont" style="font-size:15px">Nomor : {{$acara->no_surat}}</td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -82,71 +82,79 @@
                                     <table class="table-padding" width="100%" cellspacing="0" cellpadding="0"
                                         border="0">
                                         <tbody>
+                                            <tr><td></td></tr>
                                             <tr>
                                                 <td style="width:5%;"></td>
-                                                <td class="paddingfont" style="font-size:15px">Berdasarkan :</td>
+                                                <td class="paddingfont" style="font-size:15px;text-align: justify;">Berdasarkan :</td>
                                             </tr>
                                             <tr>
-                                                <td class="paddingfont" style="font-size:15px">a</td>
-                                                <td class="paddingfont" style="font-size:15px" colspan="2">Peraturan
+                                                <td class="paddingfont" style="font-size:15px;text-align: end;">a.</td>
+                                                <td class="paddingfont" style="font-size:15px;text-align: justify;line-height:1.3" colspan="3">Peraturan
                                                     Menteri Kesehatan Republik Indonesia Nomor 14 Tahun 2021 tentang
                                                     Standar Kegiatan Usaha dan Produk Pada Penyelenggaraan Perizinan
                                                     Berusaha Berbasis Risiko Sektor Kesehatan.</td>
                                             </tr>
                                             <tr>
-                                                <td class="paddingfont" style="font-size:15px">b</td>
-                                                <td class="paddingfont" style="font-size:15px" colspan="2">Peraturan
+                                                <td class="paddingfont" style="font-size:15px;text-align: end;">b.</td>
+                                                <td class="paddingfont" style="font-size:15px;text-align: justify;line-height:1.3" colspan="3">Peraturan
                                                     Menteri Kesehatan Republik Indonesia Nomor 1096/Menkes/Per/VI/2011 tentang
                                                     Higiene Sanitasi Jasa Boga.</td>
                                             </tr>
                                             <tr>
-                                                <td class="paddingfont" style="font-size:15px">c</td>
-                                                <td class="paddingfont" style="font-size:15px" colspan="2">Keputusan
+                                                <td class="paddingfont" style="font-size:15px;text-align: end;">c.</td>
+                                                <td class="paddingfont" style="font-size:15px;text-align: justify;line-height:1.3" colspan="3">Keputusan
                                                     Menteri Kesehatan Nomor 1098/Menkes/SK/VII/2023 tentang
                                                     Persyaratan Hygiene Sanitasi Rumah Makan dan Restoran.</td>
                                             </tr>
                                             <tr>
                                                 <td></td>
-                                                <td colspan="2"></td>
+                                                <td colspan="3"></td>
                                             </tr>
 
                                             <tr>
                                                 <td></td>
-                                                <td class="paddingfont" style="font-size:15px" colspan="2">Telah
-                                                    dilaksanakan {{$acara->acara->nama}} bagi {{$peserta->jabatan}} yang
+                                                <td class="paddingfont" style="font-size:15px;text-align: justify;line-height:1.3" colspan="3">Telah
+                                                    dilaksanakan Evaluasi/Pelatihan Higiene Sanitasi bagi {{$peserta->jabatan}} yang
                                                     diselenggarakan oleh Dinas Kesehatan Kota Surabaya pada tanggal
-                                                    {{\Carbon\Carbon::make($acara->acara->tgl_mulai)->translatedFormat('d M Y')}} - {{\Carbon\Carbon::make($acara->acara->tgl_selesai)->translatedFormat('d M Y')}}
+                                                    {{\Carbon\Carbon::make($acara->acara->tgl_mulai)->translatedFormat('d F Y')}} - {{\Carbon\Carbon::make($acara->acara->tgl_selesai)->translatedFormat('d F Y')}}
                                                     dengan ini memberikan sertifikat kepada :</td>
+                                                
                                             </tr>
+                                            <tr><td></td></tr>
                                             <tr>
                                                 <td></td>
                                                 <td class="paddingfont" style="width:35%;font-size: 15px;">Nama</td>
-                                                <td class="paddingfont" style="font-size:15px">: {{$peserta->nama}}</td>
+                                                <td class="paddingfont" style="font-size:15px;">:</td>
+                                                <td class="paddingfont" style="font-size:15px;font-weight: bold;">{{$peserta->nama}}</td>
                                             </tr>
                                             <tr>
                                                 <td></td>
                                                 <td class="paddingfont" style="font-size:15px">Tempat, Tanggal Lahir
                                                 </td>
-                                                <td class="paddingfont" style="font-size:15px">:
-                                                    {{$peserta->tempatlahir}}, {{$peserta->tanggallahir}}</td>
+                                                <td class="paddingfont" style="font-size:15px;">:</td>
+                                                <td class="paddingfont" style="font-size:15px">
+                                                    {{$peserta->tempatlahir}}, {{\Carbon\Carbon::make($peserta->tanggallahir)->translatedFormat('d F Y')}}</td>
                                             </tr>
                                             <tr>
                                                 <td></td>
                                                 <td class="paddingfont" style="font-size:15px">Alamat</td>
-                                                <td class="paddingfont" style="font-size:15px">: {{$peserta->alamat}}
+                                                <td class="paddingfont" style="font-size:15px;">:</td>
+                                                <td class="paddingfont" style="font-size:15px">{{$peserta->alamat}}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td></td>
                                                 <td class="paddingfont" style="font-size:15px">Pekerjaan / Jabatan</td>
-                                                <td class="paddingfont" style="font-size:15px">: {{$peserta->jabatan}}
+                                                <td class="paddingfont" style="font-size:15px;">:</td>
+                                                <td class="paddingfont" style="font-size:15px">{{$peserta->jabatan}}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td></td>
                                                 <td class="paddingfont" style="font-size:15px">Perusahaan / Unit Kerja
                                                 </td>
-                                                <td class="paddingfont" style="font-size:15px">: {{$peserta->unitkerja}}
+                                                <td class="paddingfont" style="font-size:15px;">:</td>
+                                                <td class="paddingfont" style="font-size:15px">{{$peserta->unitkerja}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -155,8 +163,8 @@
                                             </tr>
                                             <tr>
                                                 <td></td>
-                                                <td class="paddingfont" style="font-size:15px" colspan="2">Pemegang
-                                                    Sertifikat ini telah memenuhi syarat dan dipandang cakap sebagai Penjamah Makanan (Food Handler).</td>
+                                                <td class="paddingfont" style="font-size:15px;line-height:1.3;text-align:justify;" colspan="3">Pemegang
+                                                    Sertifikat ini telah memenuhi syarat dan dinilai cakap sebagai Penjamah Makanan <i>(Food Handler)</i>.</td>
                                             </tr>
 
                                         </tbody>
@@ -174,20 +182,20 @@
                                             <tr>
                                                 <td width="45%" class="keterangan">
                                                 </td>
-                                                <td class="fontBold">
+                                                <td class="" width="45%">
                                                     <div style="font-size: 15px;margin-bottom: 10px;">Surabaya, {{\Carbon\Carbon::make($acara->tgl_surat)->translatedFormat('d F Y')}}</div> 
-                                                    <div style="border: solid black 1px; width: 350px;">
+                                                    <div style="border: solid black 1px; width: 300px;">
                                                         <div style="display: flex;">
                                                             <div style="flex: 32%;" id="formQr">
                                                                 
                                                             </div>
                                                             <div style="flex: 68%;">
-                                                                <div style="font-size: 11px;font-weight: lighter;margin-top: 5px;">Surat Ini Ditandatangani Elektronik Oleh: </div>
-                                                                <div style="font-size: 12px;font-weight: lighter;">KEPALA DINAS</div>
-                                                                <br>
-                                                                <div style="font-weight: light; margin-top:10px;text-decoration: underline;">NANIK SUKRISTINA, S.KM., M.Kes</div>
-                                                                <div style="font-size: 12px;font-weight: lighter;">Pembina Utama Muda</div>
-                                                                <div style="font-size: 12px;font-weight: lighter;">NIP 197001171994032008</div>
+                                                                <div style="font-size: 9px;font-weight: lighter;margin-top: 5px;">Sertifikat Ini Ditandatangani Secara Elektronik Oleh: </div>
+                                                                <div style="font-size: 11px;font-weight: lighter;">KEPALA DINAS</div>
+                                                                
+                                                                <div style="font-size: 10px;font-weight: bold; margin-top:10px;text-decoration: underline;">NANIK SUKRISTINA, S.KM., M.Kes</div>
+                                                                <div style="font-size: 9px;font-weight: lighter;">Pembina Utama Muda</div>
+                                                                <div style="font-size: 9px;font-weight: lighter;">NIP 197001171994032008</div>
                                                             </div>
                                                         </div>
                                                             
@@ -315,19 +323,26 @@
                                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
                                             <tr>
-                                                <td width="45%" class="keterangan">
+                                                <td width="35%" class="keterangan">
                                                     @if(isset($peserta->pasfoto))
                                                     <img src="{{$peserta->pasfoto}}" class="pasfoto" alt="Pasfoto">
                                                     @else
-                                                    <svg width="4cm" height="6cm" class="pasfoto">
-                                                        <rect width="4cm" height="6cm" style="fill:#DDDDDD;" />
+                                                    <svg width="3.6cm" height="5.5cm" class="pasfoto">
+                                                        <rect width="3.6cm" height="5.5cm" style="fill:#DDDDDD;" />
                                                         <text x="23%" y="55%" fill="grey" style="font-size:25px;">Pasfoto</text>
                                                         Sorry, your browser does not support inline SVG.  
                                                     </svg>
                                                     @endif
                                                 </td>
-                                                <td class="fontBold">
+                                                <td class="">
                                                     
+                                                    <div style="border: solid black 1px; width: 90px; margin-top: 130px;">
+                                                        <div style="display: flex;">
+                                                            <div id="formQr2"></div>
+                                                            
+                                                        </div>
+                                                    </div>
+    
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -357,14 +372,27 @@
         var qr = `<qr-code id="qr1"
                     contents="`+window.location.href+`"
                         style="
-                        width: 110px;
-                        height: 110px;
+                        width: 90px;
+                        height: 90px;
                         background-color: #fff;
                         ">
                     <img src="{{asset('/public/dist/img/logoSby_32.png')}}"
-                        slot="icon" style="width:22px;" />
+                        slot="icon" style="width:18px;" />
                 </qr-code>`;
         $('#formQr').append(qr);
+    </script>
+    <script>
+        var qr2 = `<qr-code id="qr2"
+                    contents="`+window.location.href+`"
+                        style="
+                        width: 90px;
+                        height: 90px;
+                        background-color: #fff;
+                        ">
+                    <img src="{{asset('/public/dist/img/logoSby_32.png')}}"
+                        slot="icon" style="width:18px;" />
+                </qr-code>`;
+        $('#formQr2').append(qr);
     </script>
 </body>
 
