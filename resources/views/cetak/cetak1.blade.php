@@ -103,7 +103,7 @@
                                             <tr>
                                                 <td class="paddingfont" style="font-size:15px;text-align: end;">c.</td>
                                                 <td class="paddingfont" style="font-size:15px;text-align: justify;line-height:1.3" colspan="3">Keputusan
-                                                    Menteri Kesehatan Nomor 1098/Menkes/SK/VII/2023 tentang
+                                                    Menteri Kesehatan Nomor 1098/Menkes/SK/VII/2003 tentang
                                                     Persyaratan Hygiene Sanitasi Rumah Makan dan Restoran.</td>
                                             </tr>
                                             <tr>
@@ -163,8 +163,13 @@
                                             </tr>
                                             <tr>
                                                 <td></td>
+												@if($peserta->jabatan == 'Penjamah Makanan')
                                                 <td class="paddingfont" style="font-size:15px;line-height:1.3;text-align:justify;" colspan="3">Pemegang
                                                     Sertifikat ini telah memenuhi syarat dan dinilai cakap sebagai Penjamah Makanan <i>(Food Handler)</i>.</td>
+												@elseif($peserta->jabatan == 'Pengelola Makanan')
+												<td class="paddingfont" style="font-size:15px;line-height:1.3;text-align:justify;" colspan="3">Pemegang
+                                                    Sertifikat ini telah memenuhi syarat dan dinilai cakap untuk mengelola higiene sanitasi makanan.</td>
+												@endif
                                             </tr>
 
                                         </tbody>
