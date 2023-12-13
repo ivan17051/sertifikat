@@ -36,6 +36,7 @@ class TransaksiController extends Controller
         if($d['acara']->jns_sertif == 1) return view('cetak.cetak1', $d);
         elseif($d['acara']->jns_sertif == 2) return view('cetak.cetak2', $d);
         elseif($d['acara']->jns_sertif == 3) return view('cetak.cetak3', $d);
+        elseif($d['acara']->jns_sertif == 4) return view('cetak.cetak4', $d);
         
     }
 

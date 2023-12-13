@@ -73,24 +73,26 @@ class PesertaController extends Controller
 
             $model->save();
 
-            $mime = $request->file('pasfoto')->getMimeType();
+            if(isset($model->pasfoto)){
+                $mime = $request->file('pasfoto')->getMimeType();
 
-            $pattern = '/[a-zA-Z]+$/';
-            preg_match($pattern, $mime, $matches);
-            $mime = $matches[0];
-
-            $filename = $model->id . '.' . $mime;
-
-                $path = Storage::putFileAs(
-                    'pasfoto/',
-                    $request->file('pasfoto'),
-                    $filename
-                );
-
-            $url = url('/storage/app/pasfoto/' . $filename);
-            $model->pasfoto = $url;
-
-            $model->save();
+                $pattern = '/[a-zA-Z]+$/';
+                preg_match($pattern, $mime, $matches);
+                $mime = $matches[0];
+    
+                $filename = $model->id . '.' . $mime;
+    
+                    $path = Storage::putFileAs(
+                        'pasfoto/',
+                        $request->file('pasfoto'),
+                        $filename
+                    );
+    
+                $url = url('/storage/app/pasfoto/' . $filename);
+                $model->pasfoto = $url;
+    
+                $model->save();
+            }
             
         } catch (\Exception $e) {
             DB::rollBack();

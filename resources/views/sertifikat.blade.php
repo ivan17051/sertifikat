@@ -141,6 +141,7 @@ active
                                     <option value="1" @if($acara->jns_sertif == 1) selected @endif>Layak Higiene Sanitasi Makanan</option>
                                     <option value="2" @if($acara->jns_sertif == 2) selected @endif>Pelatihan Tenaga Kesehatan</option>
                                     <option value="3" @if($acara->jns_sertif == 3) selected @endif>Piagam Penghargaan</option>
+                                    <option value="4" @if($acara->jns_sertif == 4) selected @endif>Umum</option>
                                 </select>
                             </div>
                         </div>
@@ -346,6 +347,8 @@ active
                             <p class="text-muted">Pelatihan Tenaga Kesehatan</p>
                             @elseif($acara->jns_sertif==3)
                             <p class="text-muted">Piagam Penghargaan</p>
+                            @elseif($acara->jns_sertif==4)
+                            <p class="text-muted">Umum</p>
                             @else
                             <p class="text-muted">-</p>
                             @endif  

@@ -124,7 +124,7 @@
                                             <tr>
                                                 <td></td>
                                                 <td class="paddingfont" style="width:35%;font-size: 15px;">Nama</td>
-                                                <td class="paddingfont" style="font-size:15px;">:</td>
+                                                <td class="paddingfont" style="font-size:15px;width:0;">:</td>
                                                 <td class="paddingfont" style="font-size:15px;font-weight: bold;">{{$peserta->nama}}</td>
                                             </tr>
                                             <tr>

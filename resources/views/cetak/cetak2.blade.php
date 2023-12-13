@@ -111,20 +111,20 @@
                                             <tr>
                                                 <td width="45%" class="keterangan">
                                                 </td>
-                                                <td class="fontBold">
-                                                    <div style="font-size: 16px;margin-bottom: 10px;">Surabaya, {{\Carbon\Carbon::make($acara->tgl_surat)->translatedFormat('d F Y')}}</div> 
-                                                    <div style="border: solid black 1px; width: 350px;">
+                                                <td class="" width="45%">
+                                                    <div style="font-size: 15px;margin-bottom: 10px;">Surabaya, {{\Carbon\Carbon::make($acara->tgl_surat)->translatedFormat('d F Y')}}</div> 
+                                                    <div style="border: solid black 1px; width: 300px;">
                                                         <div style="display: flex;">
                                                             <div style="flex: 32%;" id="formQr">
                                                                 
                                                             </div>
                                                             <div style="flex: 68%;">
-                                                                <div style="font-size: 11px;font-weight: lighter;margin-top: 5px;">Surat Ini Ditandatangani Elektronik Oleh: </div>
-                                                                <div style="font-size: 12px;font-weight: lighter;">KEPALA DINAS</div>
-                                                                <br>
-                                                                <div style="font-weight: light; margin-top:10px;text-decoration: underline;">NANIK SUKRISTINA, S.KM., M.Kes</div>
-                                                                <div style="font-size: 12px;font-weight: lighter;">Pembina Utama Muda</div>
-                                                                <div style="font-size: 12px;font-weight: lighter;">NIP 197001171994032008</div>
+                                                                <div style="font-size: 9px;font-weight: lighter;margin-top: 5px;">Sertifikat Ini Ditandatangani Secara Elektronik Oleh: </div>
+                                                                <div style="font-size: 11px;font-weight: lighter;">KEPALA DINAS</div>
+                                                                
+                                                                <div style="font-size: 10px;font-weight: bold; margin-top:10px;text-decoration: underline;">NANIK SUKRISTINA, S.KM., M.Kes</div>
+                                                                <div style="font-size: 9px;font-weight: lighter;">Pembina Utama Muda</div>
+                                                                <div style="font-size: 9px;font-weight: lighter;">NIP 197001171994032008</div>
                                                             </div>
                                                         </div>
                                                             
