@@ -31,10 +31,8 @@
 
         .background2 {
             background-image: url('{{asset($acara->background2)}}');
-            background-repeat: no-repeat;
-            /* Do not repeat the image */
-            background-size: 100%;
-            /* Resize the background image to cover the entire container */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-size: 100%; /* Resize the background image to cover the entire container */
             background-position: center;
             background-size: cover;
         }
@@ -53,22 +51,20 @@
     <div style="margin-top: 10mm;"></div>
     <table class="screen lebar lebarKertasTidur page-break background">
         <tbody>
-            <tr><td style="color: #fff;height: 10mm;">.</td></tr>
+            <tr><td style="color: #fff;height: 30mm;">.</td></tr>
             <tr><td>&nbsp;</td></tr>
             <tr>
                 <td class="jarak">
                     <table class="lebarTabelTidur" cellspacing="0" cellpadding="0" border="0">
                         <tbody>
-                            <tr><td>.</td></tr>
-                            <tr><td style="color: #fff;height: 20mm;">.</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
                             <tr><td>&nbsp;</td></tr>
                             <tr>
                                 <td class="jarak">
-                                    <table class="lebarTabelTegak" cellspacing="0" cellpadding="0" border="0">
+                                    <table class="lebarTabelTidur" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
-                                            <tr>
-                                                <td class=""></td>
-                                            </tr>
                                             
                                             <tr style="margin-bottom:20px;">
                                                 <td class="fontCenter paddingfont" style="font-size:17px">NOMOR : {{$acara->no_surat}}</td>
@@ -144,122 +140,69 @@
                                     </table>
                                 </td>
                             </tr>
-                            <tr><td></td></tr>
-                            <tr><td></td></tr>
-                            <tr><td></td></tr>
-                            <tr><td></td></tr>
-                            <tr>
-                                <td style="color: #fff;">.</td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </td>
             </tr>
             <tr><td></td></tr>
             <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr>
-                <td style="color: #fff;">.</td>
-            </tr>
         </tbody>
     </table>
     <table class="screen lebar lebarKertasTidur page-break background2">
         <tbody>
             <tr><td style="color: #fff;height: 10mm;">.</td></tr>
-            <tr><td>&nbsp;</td></tr>
             <tr>
                 <td class="jarak">
                     <table class="lebarTabelTidur" cellspacing="0" cellpadding="0" border="0">
                         <tbody>
-                            <tr>
-                                <td class=""></td>
-                            </tr>
                             <tr style="margin-bottom:20px;">
                                 <td class="headerFont fontCenter paddingfont" style="font-size:16px">
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="fontCenter paddingfont" style="font-size:16px"></td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-
+                            <tr><td><br><br><br><br></td></tr>
+                            <tr><td><br><br><br><br></td></tr>
+                            <tr><td><br><br><br><br></td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
                             <tr>
                                 <td>
-                                    <table class="table-padding" width="100%" cellspacing="0" cellpadding="0"
-                                        border="0">
+                                    <table class="table-padding" width="80%" cellspacing="0" cellpadding="0"
+                                        border="1">
                                         <tbody>
                                             <tr>
-                                                <td style="width:5%;"></td>
-                                                <td class="paddingfont" style="font-size:15px"></td>
+                                                <td class="paddingfont" style="width:5%;font-size:15px;font-weight:bold;">No.</td>
+                                                <td class="paddingfont" style="font-size:15px;font-weight:bold;">Kategori</td>
+                                                <td class="paddingfont" style="font-size:15px;font-weight:bold;">Deskripsi</td>
+                                                <td class="paddingfont" style="font-size:15px;font-weight:bold;">Nilai</td>
                                             </tr>
+                                            @for($x=0;$x<10;$x++)
                                             <tr>
                                                 <td class="paddingfont" style="font-size:15px"></td>
-                                                <td class="paddingfont" style="font-size:15px" colspan="2"></td>
-                                            </tr>
-                                            <tr>
                                                 <td class="paddingfont" style="font-size:15px"></td>
-                                                <td class="paddingfont" style="font-size:15px" colspan="2"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="paddingfont" style="font-size:15px"></td>
-                                                <td class="paddingfont" style="font-size:15px" colspan="2"></td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td colspan="2"></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td></td>
-                                                <td class="paddingfont" style="font-size:15px" colspan="2"></td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td class="paddingfont" style="width:35%;font-size: 15px;"></td>
-                                                <td class="paddingfont" style="font-size:15px"></td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
                                                 <td class="paddingfont" style="font-size:15px"></td>
                                                 <td class="paddingfont" style="font-size:15px"></td>
                                             </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td colspan="2"></td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td class="paddingfont" style="font-size:15px" colspan="2"></td>
-                                            </tr>
-
+                                            @endfor
                                         </tbody>
-
                                     </table>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td><br><br></td>
                             </tr>
                             <tr>
                                 <td>
                                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
                                             <tr>
-                                                <td width="45%" class="keterangan">
-                                                    
-                                                </td>
+                                                <td width="45%" class="keterangan"></td>
                                                 <td class="">
-                                                    
-                                                    <div style="border: solid black 1px; width: 90px; margin-top: 130px;">
+                                                    <div style="border: solid black 1px; width: 90px; margin-top: 50px;">
                                                         <div style="display: flex;">
                                                             <div id="formQr2"></div>
-                                                            
                                                         </div>
                                                     </div>
-    
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -270,9 +213,6 @@
                     </table>
                 </td>
             </tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
             <tr><td></td></tr>
             <tr>
                 <td style="color: #fff;">.</td>
