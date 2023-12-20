@@ -170,25 +170,7 @@
                             <tr><td>&nbsp;</td></tr>
                             <tr>
                                 <td>
-                                    <table class="table-padding" width="80%" cellspacing="0" cellpadding="0"
-                                        border="1">
-                                        <tbody>
-                                            <tr>
-                                                <td class="paddingfont" style="width:5%;font-size:15px;font-weight:bold;">No.</td>
-                                                <td class="paddingfont" style="font-size:15px;font-weight:bold;">Kategori</td>
-                                                <td class="paddingfont" style="font-size:15px;font-weight:bold;">Deskripsi</td>
-                                                <td class="paddingfont" style="font-size:15px;font-weight:bold;">Nilai</td>
-                                            </tr>
-                                            @for($x=0;$x<10;$x++)
-                                            <tr>
-                                                <td class="paddingfont" style="font-size:15px"></td>
-                                                <td class="paddingfont" style="font-size:15px"></td>
-                                                <td class="paddingfont" style="font-size:15px"></td>
-                                                <td class="paddingfont" style="font-size:15px"></td>
-                                            </tr>
-                                            @endfor
-                                        </tbody>
-                                    </table>
+                                    
                                 </td>
                             </tr>
                             <tr>
