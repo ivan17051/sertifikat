@@ -22,231 +22,127 @@
             text-indent: 40px;
         }
 
-        .background {
+        .background{
             background-image: url('{{asset($acara->background)}}');
-            background-repeat: no-repeat;
-            /* Do not repeat the image */
-            background-size: 100%;
-            /* Resize the background image to cover the entire container */
-            background-position: center;
-            background-size: cover;
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-size: cover; /* Resize the background image to cover the entire container */
         }
 
         .background2 {
             background-image: url('{{asset($acara->background2)}}');
-            background-repeat: no-repeat;
-            /* Do not repeat the image */
-            background-size: 100%;
-            /* Resize the background image to cover the entire container */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-size: 100%; /* Resize the background image to cover the entire container */
             background-position: center;
             background-size: cover;
         }
 
-        .pasfoto {
-            width:4cm; 
-            height:6cm; 
-            margin-left:4cm;
-            border: 2px solid #7d7d7d;
-            padding: 2px;
-        }
     </style>
 </head>
 
 <body class="">
+    <div style="margin-top: 10mm;"></div>
     <table class="screen lebar lebarKertasTidur page-break background">
         <tbody>
-            <tr>
-                <td style="color: #fff;height: 30mm;">.</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-            </tr>
+            <tr><td style="color: #fff;height: 30mm;">.</td></tr>
+            <tr><td>&nbsp;</td></tr>
             <tr>
                 <td class="jarak">
                     <table class="lebarTabelTidur" cellspacing="0" cellpadding="0" border="0">
                         <tbody>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
                             <tr>
-                                <td class=""></td>
-                            </tr>
-
-                            <tr style="margin-bottom:20px;">
-                                <td class="fontCenter paddingfont" style="font-size:17px">NOMOR : {{$acara->no_surat}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><br><br></td>
-                            </tr>
-                            <tr>
-                                <td class="fontCenter paddingfont" style="font-size:17px">Diberikan Kepada :</td>
-                            </tr>
-                            <tr>
-                                <td class="fontCenter paddingfont" style="font-size:22px"><b>{{$peserta->nama}}</b></td>
-                            </tr>
-                            <tr>
-                                <td class="fontCenter paddingfont" style="font-size:17px">{{$peserta->unitkerja}}</td>
-                            </tr>
-                            <tr>
-                                <td><br><br></td>
-                            </tr>
-                            
-                            <tr>
-                                <td class="fontCenter paddingfont" style="font-size: 17px;">Atas ikut sertanya dalam
-                                    Pelatihan :</td>
-                            </tr>
-                            <tr>
-                                <td class="headerFont fontCenter paddingfont" style="font-size:22px">
-                                    {{$acara->acara->nama}}</td>
-                            </tr>
-                            <tr>
-                                <td class="fontCenter paddingfont" style="font-size: 17px;">Pada tanggal
-                                    {{\Carbon\Carbon::make($acara->acara->tgl_mulai)->translatedFormat('d M Y')}} -
-                                    {{\Carbon\Carbon::make($acara->acara->tgl_selesai)->translatedFormat('d M Y')}}</td>
-                            </tr>
-                            <tr>
-                                <td><br><br></td>
-                            </tr>
-                            <tr>
-                                <td><br><br></td>
-                            </tr>
-                            <tr>
-                                <td><br><br></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <td class="jarak">
+                                    <table class="lebarTabelTidur" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
+                                            
+                                            <tr style="margin-bottom:20px;">
+                                                <td class="fontCenter paddingfont" style="font-size:17px">NOMOR : {{$acara->no_surat}}</td>
+                                            </tr>
                                             <tr>
-                                                <td width="60%" class="keterangan">
-                                                </td>
-                                                <td class="fontBold">
-                                                    <div style="font-size: 16px;margin-bottom: 10px;">Surabaya,
-                                                        {{\Carbon\Carbon::make($acara->tgl_surat)->translatedFormat('d F
-                                                        Y')}}</div>
-                                                    <div style="border: solid black 1px; width: 350px;">
-                                                        <div style="display: flex;">
-                                                            <div style="flex: 32%;" id="formQr">
+                                                <td><br><br></td>
+                                            </tr>
+                                            <tr>
+                                                <td><br><br></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fontCenter paddingfont" style="font-size:17px"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fontCenter paddingfont" style="font-size:22px"><b>{{$peserta->nama}}</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fontCenter paddingfont" style="font-size:17px">{{$peserta->unitkerja}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><br><br></td>
+                                            </tr>
+                                            <tr>
+                                                <td><br><br></td>
+                                            </tr>
 
-                                                            </div>
-                                                            <div style="flex: 68%;">
-                                                                <div
-                                                                    style="font-size: 11px;font-weight: lighter;margin-top: 5px;">
-                                                                    Surat Ini Ditandatangani Elektronik Oleh: </div>
-                                                                <div style="font-size: 12px;font-weight: lighter;">
-                                                                    KEPALA DINAS</div>
-                                                                <br>
-                                                                <div
-                                                                    style="font-weight: light; margin-top:10px;text-decoration: underline;">
-                                                                    NANIK SUKRISTINA, S.KM., M.Kes</div>
-                                                                <div style="font-size: 12px;font-weight: lighter;">
-                                                                    Pembina Utama Muda</div>
-                                                                <div style="font-size: 12px;font-weight: lighter;">NIP
-                                                                    197001171994032008</div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
+                                            <tr>
+                                                <td class="fontCenter paddingfont" style="font-size: 17px;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="headerFont fontCenter paddingfont" style="font-size:22px"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fontCenter paddingfont" style="font-size: 17px;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><br><br></td>
+                                            </tr>
+                                            <tr>
+                                                <td><br><br></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="60%" class="keterangan">
+                                                                </td>
+                                                                <td class="" width="40%">
+                                                                    <div style="font-size: 15px;margin-bottom: 10px;">Surabaya, {{\Carbon\Carbon::make($acara->tgl_surat)->translatedFormat('d F Y')}}</div> 
+                                                                    <div style="border: solid black 1px; width: 300px;">
+                                                                        <div style="display: flex;">
+                                                                            <div style="flex: 32%;" id="formQr">
+                                                                                
+                                                                            </div>
+                                                                            <div style="flex: 68%;">
+                                                                                <div style="font-size: 9px;font-weight: lighter;margin-top: 5px;">Piagam Penghargaan Ini Ditandatangani Secara Elektronik Oleh: </div>
+                                                                                <div style="font-size: 11px;font-weight: lighter;">KEPALA DINAS</div>
+                                                                                
+                                                                                <div style="font-size: 10px;font-weight: bold; margin-top:10px;text-decoration: underline;">NANIK SUKRISTINA, S.KM., M.Kes</div>
+                                                                                <div style="font-size: 9px;font-weight: lighter;">Pembina Utama Muda</div>
+                                                                                <div style="font-size: 9px;font-weight: lighter;">NIP 197001171994032008</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            
-            <tr>
-                <td style="color: #fff;">.</td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="screen lebar lebarKertasTidur page-break background2">
-        <tbody>
-            <tr>
-                <td style="color: #fff;height: 30mm;">.</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="jarak">
-                    <table class="lebarTabelTidur" cellspacing="0" cellpadding="0" border="0">
-                        <tbody>
-                            <tr>
-                                <td class=""></td>
-                            </tr>
-
-                            <tr style="margin-bottom:20px;">
-                                <td class="fontCenter paddingfont" style="font-size:17px"></td>
-                            </tr>
-                            <tr>
-                                <td><br><br></td>
-                            </tr>
-                            <tr>
-                                <td class="fontCenter paddingfont" style="font-size:17px"></td>
-                            </tr>
-                            <tr>
-                                <td class="fontCenter paddingfont" style="font-size:22px"></td>
-                            </tr>
-                            <tr>
-                                <td class="fontCenter paddingfont" style="font-size:17px"></td>
-                            </tr>
-                            <tr>
-                                <td><br><br></td>
-                            </tr>
                             
-                            <tr>
-                                <td class="fontCenter paddingfont" style="font-size: 17px;"></td>
-                            </tr>
-                            <tr>
-                                <td class="headerFont fontCenter paddingfont" style="font-size:22px"></td>
-                            </tr>
-                            <tr>
-                                <td class="fontCenter paddingfont" style="font-size: 17px;"></td>
-                            </tr>
-                            <tr>
-                                <td><br><br></td>
-                            </tr>
-                            <tr>
-                                <td><br><br></td>
-                            </tr>
-                            <tr>
-                                <td><br><br></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                                        <tbody>
-                                            <tr>
-                                                <td width="50%">
-                                                    @if(isset($peserta->pasfoto))
-                                                    <img src="{{$peserta->pasfoto}}" class="pasfoto" alt="Pasfoto">
-                                                    @else
-                                                    <svg width="4cm" height="6cm" class="pasfoto">
-                                                        <rect width="4cm" height="6cm" style="fill:#DDDDDD;" />
-                                                        <text x="23%" y="55%" fill="grey" style="font-size:25px;">Pasfoto</text>
-                                                        Sorry, your browser does not support inline SVG.  
-                                                    </svg>
-                                                    @endif
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </td>
             </tr>
-            
-            <tr>
-                <td style="color: #fff;">.</td>
-            </tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
         </tbody>
     </table>
+    
     <script>
         // window.print();
     </script>
@@ -255,14 +151,14 @@
     <script src="https://unpkg.com/@bitjson/qr-code@1.0.2/dist/qr-code.js"></script>
     <script>
         var qr = `<qr-code id="qr1"
-                    contents="`+ window.location.href + `"
+                    contents="`+window.location.href+`"
                         style="
-                        width: 110px;
-                        height: 110px;
+                        width: 90px;
+                        height: 90px;
                         background-color: #fff;
                         ">
                     <img src="{{asset('/public/dist/img/logoSby_32.png')}}"
-                        slot="icon" style="width:22px;" />
+                        slot="icon" style="width:18px;" />
                 </qr-code>`;
         $('#formQr').append(qr);
     </script>
