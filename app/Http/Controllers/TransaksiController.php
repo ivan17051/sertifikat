@@ -30,8 +30,17 @@ class TransaksiController extends Controller
     }
 
     public function cetak($idacara, Request $request){
+        
+        if(!is_numeric($idacara) && base64_decode($idacara,true)) {
+            $idacara = base64_decode($idacara,true);
+        } else $idacara = $idacara;
+        
+        if (!is_numeric($request->idpeserta) && base64_decode($request->idpeserta,true)) {
+            $idpeserta = base64_decode($request->idpeserta,true);
+        } else $idpeserta = $request->idpeserta;
+        
         $d['acara'] = Transaksi::where('idacara', $idacara)->with('acara')->first();
-        $d['peserta'] = Peserta::findOrFail($request->idpeserta);
+        $d['peserta'] = Peserta::findOrFail($idpeserta);
 
         if($d['acara']->jns_sertif == 1) return view('cetak.cetak1', $d);
         elseif($d['acara']->jns_sertif == 2) return view('cetak.cetak2', $d);

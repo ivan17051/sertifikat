@@ -54,6 +54,7 @@
                             <tr><td>&nbsp;</td></tr>
                             <tr><td>&nbsp;</td></tr>
                             <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
                             <tr>
                                 <td class="jarak">
                                     <table class="lebarTabelTidur" cellspacing="0" cellpadding="0" border="0">
@@ -66,7 +67,7 @@
                                                 <td><br><br></td>
                                             </tr>
                                             <tr>
-                                                <td><br><br></td>
+                                                <td><br></td>
                                             </tr>
                                             <tr>
                                                 <td class="fontCenter paddingfont" style="font-size:17px"></td>

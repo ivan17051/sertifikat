@@ -380,6 +380,7 @@ active
                                         <th>Nama</th>
                                         <th>Unit Kerja</th>
                                         <th>Jabatan</th>
+                                        <th hidden>Link</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -389,8 +390,9 @@ active
                                         <td>{{$unit->nama}}</td>
                                         <td>{{$unit->unitkerja}}</td>
                                         <td>{{$unit->jabatan}}</td>
+                                        <td hidden>{{route('transaksi.cetak',['idacara'=>base64_encode($acara->idacara), 'idpeserta'=>base64_encode($unit->id)])}}</td>
                                         <td>
-                                            <a href="{{route('transaksi.cetak',['idacara'=>$acara->idacara, 'idpeserta'=>$unit->id])}}" class="btn btn-info btn-sm" target="_blank" rel="noreferrer noopener"><i class="fas fa-print nav-icon"></i></a>
+                                            <a href="{{route('transaksi.cetak',['idacara'=>base64_encode($acara->idacara), 'idpeserta'=>base64_encode($unit->id)])}}" class="btn btn-info btn-sm" target="_blank" rel="noreferrer noopener"><i class="fas fa-print nav-icon"></i></a>
                                             <button class="btn btn-danger btn-sm" onclick="hapus({{isset($unit->id) ? $unit->id : 0}})"><i class="fas fa-trash nav-icon"></i></button>
                                         </td>
                                     </tr>
@@ -401,6 +403,7 @@ active
                                         <th>Nama</th>
                                         <th>Unit Kerja</th>
                                         <th>Jabatan</th>
+                                        <th hidden>Link</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>
@@ -427,6 +430,8 @@ active
         bsCustomFileInput.init();
     });
 
+    
+
     function submit(idpoli) {
         if (idpoli == 1) {
             $('#modalAbsenMasuk').modal('show');
@@ -449,6 +454,9 @@ active
     $(function () {
         $("#example1").DataTable({
             "responsive": true, "lengthChange": false, "autoWidth": false,
+            buttons: [
+                'copy', 'excel', 'print'
+            ]
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
     });
