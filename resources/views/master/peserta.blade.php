@@ -101,6 +101,43 @@ active
 </div>
 <!-- End Modal Tambah Peserta -->
 
+<!-- Modal Tambah Peserta -->
+<div class="modal modal-danger fade" id="import" tabindex="-1" role="dialog" aria-labelledby="Import Data Peserta"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahLabel">Import Data Peserta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('peserta.import')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body row">
+                    <div class="col-md-12">
+                        <div class="form-group mt-3">
+                            <label for="background">Upload Excel</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="file" name="file">
+                                    <label class="custom-file-label" for="file">Pilih File</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal Tambah Peserta -->
+
 <!-- Modal Edit Peserta -->
 <div class="modal modal-danger fade" id="sunting" tabindex="-1" role="dialog" aria-labelledby="Edit Peserta"
     aria-hidden="true">
@@ -253,6 +290,8 @@ active
                             <h3 class="card-title">Data Peserta</h3>
                         </div>
                         <div class="col-md-6 text-right">
+                            <button class="btn btn-info btn-sm" data-toggle="modal"
+                                data-target="#import">Import</button>
                             <button class="btn btn-primary btn-sm" data-toggle="modal"
                                 data-target="#tambah">Tambah</button>
                         </div>
@@ -424,5 +463,9 @@ active
         },
         false,
     );
+
+    $(function() {
+        bsCustomFileInput.init();
+    });
 </script>
 @endsection

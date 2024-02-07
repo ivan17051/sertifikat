@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Storage;
 use DB;
 use App\Peserta;
+use App\Imports\PesertaImport;
 use Datatables;
 
 class PesertaController extends Controller
@@ -61,6 +63,32 @@ class PesertaController extends Controller
         }
         $this->flashSuccess('Berhasil Mengupload');
         return back();
+    }
+
+    public function import_peserta(Request $request){
+        
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		// $file = $request->file('file');
+ 
+		// membuat nama file unik
+		// $nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		// $file->move('import_peserta',$nama_file);
+ 
+		// import data
+		Excel::import(new PesertaImport, $request->file('file')->store('files'));
+ 
+		// notifikasi dengan session
+		\Session::flash('sukses','Data Siswa Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		return redirect(route('peserta.index'));
     }
 
     public function store(Request $request){
