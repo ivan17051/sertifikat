@@ -143,6 +143,7 @@ active
                                     <option value="3" @if($acara->jns_sertif == 3) selected @endif>Piagam Penghargaan</option>
                                     <option value="4" @if($acara->jns_sertif == 4) selected @endif>Umum MSIB</option>
                                     <option value="5" @if($acara->jns_sertif == 5) selected @endif>Umum Pelatihan</option>
+                                    <option value="6" @if($acara->jns_sertif == 6) selected @endif>Kejuaraan Piagam Penghargaan</option>
                                 </select>
                             </div>
                         </div>
@@ -352,6 +353,8 @@ active
                             <p class="text-muted">Umum MSIB</p>
                             @elseif($acara->jns_sertif==5)
                             <p class="text-muted">Umum Pelatihan</p>
+                            @elseif($acara->jns_sertif==6)
+                            <p class="text-muted">Kejuaraan Piagam Penghargaan</p>
                             @else
                             <p class="text-muted">-</p>
                             @endif  

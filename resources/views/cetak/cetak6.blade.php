@@ -83,28 +83,30 @@
                                 <td class="jarak">
                                     <table class="lebarTabelTidur" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
-
+                                            <tr><br></tr>
                                             <tr style="margin-bottom:20px;">
                                                 <td class="fontCenter paddingfont" style="font-size:17px">NOMOR :
                                                     {{$acara->no_surat}}</td>
                                             </tr>
                                             <tr>
-                                                <td><br><br></td>
+                                                <td><br></td>
                                             </tr>
                                             <tr>
-                                                <td class="fontCenter paddingfont" style="font-size:17px">Diberikan
-                                                    Kepada :</td>
+                                                <td class="fontCenter paddingfont" style="font-size:17px"><br></td>
                                             </tr>
                                             <tr>
                                                 <td class="fontCenter paddingfont" style="font-size:22px">
                                                     <b>{{$peserta->nama}}</b></td>
                                             </tr>
                                             <tr>
-                                                <td class="fontCenter paddingfont" style="font-size:17px">
-                                                    {{$peserta->unitkerja}}</td>
+                                                <td><br></td>
                                             </tr>
                                             <tr>
-                                                <td><br><br></td>
+                                                <td class="fontCenter paddingfont" style="font-size:17px">Atas prestasinya sebagai :</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fontCenter paddingfont" style="font-size:22px;font-weight:bold;">
+                                                    {{$peserta->jabatan}}</td>
                                             </tr>
                                             <tr>
                                                 <td><br><br></td>
@@ -138,9 +140,9 @@
                                                                 </td>
                                                                 <td class="" width="35%">
                                                                     <div style="font-size: 15px;margin-bottom: 10px;">
-                                                                        Surabaya,
-                                                                        {{\Carbon\Carbon::make($acara->tgl_surat)->translatedFormat('d
-                                                                        F Y')}}</div>
+                                                                        Surabaya, {{\Carbon\Carbon::make($acara->tgl_surat)->translatedFormat('d
+                                                                        F Y')}}
+                                                                        </div>
                                                                     <div style="border: solid black 1px; width: 300px;">
                                                                         <div style="display: flex;">
                                                                             <div style="flex: 32%;" id="formQr">
@@ -190,63 +192,6 @@
             </tr>
         </tbody>
     </table>
-    <table class="screen lebar lebarKertasTidur page-break background2">
-        <tbody>
-            <tr>
-                <td>
-                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                        <tbody>
-                            <tr>
-                                <td width="87%" class="keterangan"></td>
-                                <td class="">
-                                    <div style="border: solid black 1px; width: 90px; margin-top: 30px;">
-                                        <div style="display: flex;">
-                                            <div id="formQr2"></div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td class="jarak">
-                    <table class="lebarTabelTidur" cellspacing="0" cellpadding="0" border="0">
-                        <tbody>
-                            <tr style="margin-bottom:20px;">
-                                <td class="headerFont fontCenter paddingfont" style="font-size:16px">
-                                </td>
-                            </tr>
-                            <tr></tr>
-                            <tr><td><br><br><br><br></td></tr>
-                            <tr><td><br><br><br><br></td></tr>
-                            <tr><td><br><br><br><br></td></tr>
-                            <tr><td><br><br><br><br></td></tr>
-                            <tr><td><br><br><br><br></td></tr>
-                            <tr><td><br><br><br><br></td></tr>
-                            <tr><td><br><br><br><br></td></tr>
-                            <tr><td><br><br><br><br></td></tr>
-                            <tr><td><br><br><br><br></td></tr>
-                            
-                            
-                            <tr><td>&nbsp;</td></tr>
-                            <tr><td>&nbsp;</td></tr>
-                            <tr><td>&nbsp;</td></tr>
-                            <tr><td>&nbsp;</td></tr>
-                            <tr><td>&nbsp;</td></tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="color: #fff;">.</td>
-            </tr>
-        </tbody>
-    </table>
     <script>
         // window.print();
     </script>
@@ -266,19 +211,7 @@
                 </qr-code>`;
         $('#formQr').append(qr);
     </script>
-    <script>
-        var qr2 = `<qr-code id="qr2"
-                    contents="`+ window.location.href + `"
-                        style="
-                        width: 90px;
-                        height: 90px;
-                        background-color: #fff;
-                        ">
-                    <img src="{{asset('/public/dist/img/logoSby_32.png')}}"
-                        slot="icon" style="width:18px;" />
-                </qr-code>`;
-        $('#formQr2').append(qr);
-    </script>
+    
 </body>
 
 </html>
