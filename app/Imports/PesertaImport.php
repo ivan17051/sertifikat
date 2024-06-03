@@ -18,15 +18,19 @@ class PesertaImport implements ToModel
     {
         if($row[0]=='nik') return null;
         
-        else return new Peserta([
-            'nik'           => $row[0], 
-            'nama'          => $row[1],
-            'tempatlahir'   => $row[2], 
-            'tanggallahir'  => $row[3], 
-            'alamat'        => $row[4], 
-            'unitkerja'     => $row[5], 
-            'jabatan'       => $row[6], 
-            'isactive'      => 1, 
-        ]);
+        else {
+            $data = new Peserta([
+                'nik'           => $row[0], 
+                'nama'          => $row[1],
+                'tempatlahir'   => $row[2], 
+                'tanggallahir'  => $row[3], 
+                'alamat'        => $row[4], 
+                'unitkerja'     => $row[5], 
+                'jabatan'       => $row[6], 
+                'isactive'      => 1, 
+            ]);
+            $this->data[] = $data;
+            return $data;
+        }
     }
 }

@@ -65,6 +65,7 @@ active
 <!-- /.content-wrapper -->
 
 @else
+<!-- Modal Tambah Peserta -->
 <div class="modal fade" id="modalTambah">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -84,8 +85,8 @@ active
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="tanggal">Peserta</label>
-                                <select class="form-control select2" name="addPeserta[]" multiple="multiple" data-placeholder="Pilih Peserta"
-                                    style="width: 100%;">
+                                <select class="form-control select2" name="addPeserta[]" multiple="multiple"
+                                    data-placeholder="Pilih Peserta" style="width: 100%;">
                                     @foreach($allPeserta as $unit)
                                     <option value="{{$unit->id}}">{{$unit->nama}}</option>
                                     @endforeach
@@ -105,6 +106,53 @@ active
     </div>
     <!-- /.modal-dialog -->
 </div>
+<!-- End Modal Tambah Peserta -->
+
+<!-- Modal Import Peserta -->
+<div class="modal modal-danger fade" id="import" tabindex="-1" role="dialog" aria-labelledby="Import Data Peserta"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahLabel">Import Data Peserta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('peserta.import')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body row">
+                    <div class="col-md-12">
+                        <p>Import Data Peserta harus sesuai dengan Format Excel yang sudah ditentukan.
+                            <a href="{{asset('public/template_peserta.xlsx')}}" class="btn btn-primary btn-sm">Format
+                                Excel</a>
+                        </p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group mt-3">
+                            <label for="background">Upload Excel</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="file" name="file">
+                                    <label class="custom-file-label" for="file">Pilih File</label>
+                                </div>
+                            </div>
+                            <input type="hidden" name="idacara" value="{{$acara->id}}">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal Import Peserta -->
+
+<!-- Modal Edit Acara -->
 <div class="modal fade" id="modalEdit">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -137,13 +185,19 @@ active
                             <div class="form-group">
                                 <label for="background">Jenis Sertifikat</label>
                                 <select name="jns_sertif" id="jns_sertif" class="form-control select2">
-                                    <option value="" @if(isset($acara->jns_sertif)) selected @endif disabled> --Pilih-- </option>
-                                    <option value="1" @if($acara->jns_sertif == 1) selected @endif>Layak Higiene Sanitasi Makanan</option>
-                                    <option value="2" @if($acara->jns_sertif == 2) selected @endif>Pelatihan Tenaga Kesehatan</option>
-                                    <option value="3" @if($acara->jns_sertif == 3) selected @endif>Piagam Penghargaan</option>
+                                    <option value="" @if(isset($acara->jns_sertif)) selected @endif disabled> --Pilih--
+                                    </option>
+                                    <option value="1" @if($acara->jns_sertif == 1) selected @endif>Layak Higiene
+                                        Sanitasi Makanan</option>
+                                    <option value="2" @if($acara->jns_sertif == 2) selected @endif>Pelatihan Tenaga
+                                        Kesehatan</option>
+                                    <option value="3" @if($acara->jns_sertif == 3) selected @endif>Piagam Penghargaan
+                                    </option>
                                     <option value="4" @if($acara->jns_sertif == 4) selected @endif>Umum MSIB</option>
-                                    <option value="5" @if($acara->jns_sertif == 5) selected @endif>Umum Pelatihan</option>
-                                    <option value="6" @if($acara->jns_sertif == 6) selected @endif>Kejuaraan Piagam Penghargaan</option>
+                                    <option value="5" @if($acara->jns_sertif == 5) selected @endif>Umum Pelatihan
+                                    </option>
+                                    <option value="6" @if($acara->jns_sertif == 6) selected @endif>Kejuaraan Piagam
+                                        Penghargaan</option>
                                 </select>
                             </div>
                         </div>
@@ -160,6 +214,9 @@ active
     </div>
     <!-- /.modal-dialog -->
 </div>
+<!-- End Modal Edit Acara -->
+
+<!-- Modal Hapus Peserta -->
 <div class="modal fade" id="modalHapus">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -169,8 +226,7 @@ active
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="post" id="formHapus"
-                enctype="multipart/form-data">
+            <form action="" method="post" id="formHapus" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -187,6 +243,9 @@ active
     </div>
     <!-- /.modal-dialog -->
 </div>
+<!-- End Modal Hapus Peserta -->
+
+<!-- Modal Lihat Background 1 -->
 <div class="modal fade" id="modalLihat">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -196,7 +255,8 @@ active
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('transaksi.upload',['id'=>$acara->id, 'key'=>1])}}" method="post" id="formLihat" enctype="multipart/form-data">
+            <form action="{{route('transaksi.upload',['id'=>$acara->id, 'key'=>1])}}" method="post" id="formLihat"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -213,7 +273,7 @@ active
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -224,6 +284,9 @@ active
     </div>
     <!-- /.modal-dialog -->
 </div>
+<!-- End Modal Lihat Background 1 -->
+
+<!-- Modal Lihat Background 2 -->
 <div class="modal fade" id="modalLihat2">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -233,7 +296,8 @@ active
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('transaksi.upload',['id'=>$acara->id, 'key'=>2])}}" method="post" id="formLihat" enctype="multipart/form-data">
+            <form action="{{route('transaksi.upload',['id'=>$acara->id, 'key'=>2])}}" method="post" id="formLihat"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -250,7 +314,7 @@ active
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-secondary">Simpan</button>
@@ -261,7 +325,7 @@ active
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
+<!-- End Modal Lihat Background 2 -->
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -302,8 +366,10 @@ active
                                 </li>
                             </ul>
                             <div class="btn-group btn-block" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLihat">Background 1</button>
-                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalLihat2">Background 2</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#modalLihat">Background 1</button>
+                                <button type="button" class="btn btn-secondary" data-toggle="modal"
+                                    data-target="#modalLihat2">Background 2</button>
                             </div>
                             <!-- <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalLihat"><b>Background</b></button> -->
                         </div>
@@ -319,14 +385,16 @@ active
                                     <h3 class="card-title">Tentang</h3>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <button class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#modalEdit"><i class="fas fa-pencil-alt"></i> Edit</button>
+                                    <button class="btn btn-outline-dark btn-sm" data-toggle="modal"
+                                        data-target="#modalEdit"><i class="fas fa-pencil-alt"></i> Edit</button>
                                 </div>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <strong><i class="fas fa-calendar mr-1"></i> Tanggal Acara</strong>
-                            <p class="text-muted">{{\Carbon\Carbon::make($acara->acara->tgl_mulai)->translatedFormat('d M Y')}} - 
+                            <p class="text-muted">{{\Carbon\Carbon::make($acara->acara->tgl_mulai)->translatedFormat('d
+                                M Y')}} -
                                 {{\Carbon\Carbon::make($acara->acara->tgl_selesai)->translatedFormat('d M Y')}}</p>
                             <hr>
 
@@ -335,13 +403,14 @@ active
                             <hr>
 
                             <strong><i class="fas fa-pencil-alt mr-1"></i> Nomor Sertifikat</strong>
-                            <p class="text-muted">{{isset($acara->no_surat) ? $acara->no_surat : '-'}}</p> 
+                            <p class="text-muted">{{isset($acara->no_surat) ? $acara->no_surat : '-'}}</p>
                             <hr>
 
                             <strong><i class="fas fa-calendar-check mr-1"></i> Tanggal Sertifikat</strong>
-                            <p class="text-muted">{{isset($acara->tgl_surat) ? \Carbon\Carbon::make($acara->tgl_surat)->translatedFormat('d M Y') : '-'}}</p>
+                            <p class="text-muted">{{isset($acara->tgl_surat) ?
+                                \Carbon\Carbon::make($acara->tgl_surat)->translatedFormat('d M Y') : '-'}}</p>
                             <hr>
-                            
+
                             <strong><i class="fas fa-bars mr-1"></i> Jenis Sertifikat</strong>
                             @if($acara->jns_sertif==1)
                             <p class="text-muted">Layak Higiene Sanitasi Makanan</p>
@@ -357,7 +426,7 @@ active
                             <p class="text-muted">Kejuaraan Piagam Penghargaan</p>
                             @else
                             <p class="text-muted">-</p>
-                            @endif  
+                            @endif
 
                         </div>
                         <!-- /.card-body -->
@@ -373,7 +442,9 @@ active
                                     <h3 class="card-title">Data Peserta</h3>
                                 </div>
                                 <div class="col-md-4 text-right">
-                                    <button class="btn btn-info btn-sm" data-toggle="modal"
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#import">Import
+                                        Peserta</button>
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal"
                                         data-target="#modalTambah">Tambah Peserta</button>
                                 </div>
                             </div>
@@ -396,10 +467,15 @@ active
                                         <td>{{$unit->nama}}</td>
                                         <td>{{$unit->unitkerja}}</td>
                                         <td>{{$unit->jabatan}}</td>
-                                        <td hidden>{{route('transaksi.cetak',['idacara'=>base64_encode($acara->idacara), 'idpeserta'=>base64_encode($unit->id)])}}</td>
+                                        <td hidden>{{route('transaksi.cetak',['idacara'=>base64_encode($acara->idacara),
+                                            'idpeserta'=>base64_encode($unit->id)])}}</td>
                                         <td>
-                                            <a href="{{route('transaksi.cetak',['idacara'=>base64_encode($acara->idacara), 'idpeserta'=>base64_encode($unit->id)])}}" class="btn btn-info btn-sm" target="_blank" rel="noreferrer noopener"><i class="fas fa-print nav-icon"></i></a>
-                                            <button class="btn btn-danger btn-sm" onclick="hapus({{isset($unit->id) ? $unit->id : 0}})"><i class="fas fa-trash nav-icon"></i></button>
+                                            <a href="{{route('transaksi.cetak',['idacara'=>base64_encode($acara->idacara), 'idpeserta'=>base64_encode($unit->id)])}}"
+                                                class="btn btn-info btn-sm" target="_blank" rel="noreferrer noopener"><i
+                                                    class="fas fa-print nav-icon"></i></a>
+                                            <button class="btn btn-danger btn-sm"
+                                                onclick="hapus({{isset($unit->id) ? $unit->id : 0}})"><i
+                                                    class="fas fa-trash nav-icon"></i></button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -436,7 +512,7 @@ active
         bsCustomFileInput.init();
     });
 
-    
+
 
     function submit(idpoli) {
         if (idpoli == 1) {
@@ -449,12 +525,12 @@ active
         // $('#formantrian').submit();
     }
 
-    @if($id!=0)
-    function hapus(idpeserta){
-        var $modal = $('#modalHapus');
-        $('#formHapus').attr('action',"{{route('transaksi.hapus',['idtrans'=>$acara->id])}}"+'?idpeserta='+idpeserta);
-        $modal.modal('show');
-    }
+    @if ($id != 0)
+        function hapus(idpeserta) {
+            var $modal = $('#modalHapus');
+            $('#formHapus').attr('action', "{{route('transaksi.hapus',['idtrans'=>$acara->id])}}" + '?idpeserta=' + idpeserta);
+            $modal.modal('show');
+        }
     @endif
 
     $(function () {

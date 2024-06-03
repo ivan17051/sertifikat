@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Storage;
 use DB;
 use App\Peserta;
+use App\Transaksi;
 use App\Imports\PesertaImport;
 use Datatables;
 
@@ -72,23 +73,28 @@ class PesertaController extends Controller
 			'file' => 'required|mimes:csv,xls,xlsx'
 		]);
  
-		// menangkap file excel
-		// $file = $request->file('file');
- 
-		// membuat nama file unik
-		// $nama_file = rand().$file->getClientOriginalName();
- 
-		// upload ke folder file_siswa di dalam folder public
-		// $file->move('import_peserta',$nama_file);
- 
 		// import data
-		Excel::import(new PesertaImport, $request->file('file')->store('files'));
- 
+        $import = new PesertaImport;
+		Excel::import($import, $request->file('file')->store('files'));
+        
+        if(isset($request->idacara)){
+            $ids = [];
+            foreach($import->data as $unit){
+                array_push($ids,$unit->id);
+            }
+            $idpeserta = substr(json_encode($ids),1,-1);
+            
+            $transaksi = Transaksi::where('idacara',$request->idacara)->first();
+            $transaksi->iduser = $idpeserta;
+            $transaksi->save();
+        }
+        
 		// notifikasi dengan session
 		\Session::flash('sukses','Data Siswa Berhasil Diimport!');
  
 		// alihkan halaman kembali
-		return redirect(route('peserta.index'));
+		// return redirect(route('peserta.index'));
+        return back();
     }
 
     public function store(Request $request){

@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="{{asset('/public/css/report.css')}}" rel="stylesheet" type="text/css" media="all">
     <link href="{{asset('/public/css/report-screen.css')}}" rel="stylesheet" type="text/css" media="screen">
-    <title>SERTIFIKAT</title>
+    <title>PIAGAM PENGHARGAAN</title>
     <style media="all" type="text/css">
         body {
             font-family: Verdana, Geneva, sans-serif;
@@ -58,10 +58,7 @@
     <table class="screen lebar lebarKertasTidur page-break background">
         <tbody>
             <tr>
-                <td style="color: #fff;height: 30mm;">.</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
+                <td style="color: #fff;height: 31mm;">.</td>
             </tr>
             <tr>
                 <td class="jarak">
@@ -89,38 +86,31 @@
                                                     {{$acara->no_surat}}</td>
                                             </tr>
                                             <tr>
-                                                <td><br></td>
+                                                <td><br><br></td>
                                             </tr>
                                             <tr>
-                                                <td class="fontCenter paddingfont" style="font-size:17px"><br></td>
+                                                <td class="fontCenter paddingfont"><br></td>
                                             </tr>
                                             <tr>
                                                 <td class="fontCenter paddingfont" style="font-size:22px">
                                                     <b>{{$peserta->nama}}</b></td>
                                             </tr>
                                             <tr>
-                                                <td><br></td>
+                                                <td class="fontCenter paddingfont" style="font-size:14px">
+                                                    {{$peserta->unitkerja}}</td>
                                             </tr>
                                             <tr>
-                                                <td class="fontCenter paddingfont" style="font-size:17px">Atas prestasinya sebagai :</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fontCenter" style="font-size:17px">Atas prestasinya sebagai :</td>
                                             </tr>
                                             <tr>
                                                 <td class="fontCenter paddingfont" style="font-size:22px;font-weight:bold;">
                                                     {{$peserta->jabatan}}</td>
                                             </tr>
                                             <tr>
-                                                <td><br><br></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="fontCenter paddingfont" style="font-size: 17px;"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="headerFont fontCenter paddingfont" style="font-size:22px">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fontCenter paddingfont" style="font-size: 17px;"></td>
+                                                <td><br><br><br></td>
                                             </tr>
                                             <tr>
                                                 <td><br><br></td>
@@ -151,7 +141,7 @@
                                                                             <div style="flex: 68%;">
                                                                                 <div
                                                                                     style="font-size: 9px;font-weight: lighter;margin-top: 5px;">
-                                                                                    Sertifikat Ini Ditandatangani Secara
+                                                                                    Piagam Penghargaan Ini Ditandatangani Secara
                                                                                     Elektronik Oleh: </div>
                                                                                 <div
                                                                                     style="font-size: 11px;font-weight: lighter;">
@@ -175,6 +165,8 @@
                                                     </table>
                                                 </td>
                                             </tr>
+                                            <tr><td><br></td></tr>
+                                            <tr><td><br></td></tr>
                                         </tbody>
                                     </table>
                                 </td>
