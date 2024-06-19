@@ -55,6 +55,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{route('penilaian.index')}}" class="nav-link @yield('penilaianStatus')">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Penilaian</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{route('user.index')}}" class="nav-link @yield('userStatus')">
                             <i class="far fa-circle nav-icon"></i>
                             <p>User</p>
@@ -78,6 +84,14 @@
                 </a>
             </li>
             
+            <li class="nav-item">
+                <a href="{{route('nilai.index')}}" class="nav-link @yield('nilaiPesertaStatus')">
+                    <i class="nav-icon fas fa fa-star-half"></i>
+                    <p>
+                        Nilai Peserta
+                    </p>
+                </a>
+            </li>
             <!-- <li class="nav-item">
                 <a href="{{route('data.laporan')}}" class="nav-link @yield('laporanStatus')">
                     <i class="nav-icon fas fa-file-invoice"></i>

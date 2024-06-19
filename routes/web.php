@@ -19,10 +19,12 @@ Route::middleware(['auth'])->group(function (){
     
     Route::apiResource('user', UserController::class);
     Route::apiResource('acara', AcaraController::class);
+    Route::apiResource('penilaian', PenilaianController::class);
     Route::apiResource('peserta', PesertaController::class);
 
     Route::post('/peserta/data', 'PesertaController@data')->name('peserta.data');
     Route::post('/acara/data', 'AcaraController@data')->name('acara.data');
+    Route::post('/penilaian/data', 'PenilaianController@data')->name('penilaian.data');
 
     Route::post('/peserta/upload', 'PesertaController@upload')->name('peserta.upload');
     Route::post('/peserta/import', 'PesertaController@import_peserta')->name('peserta.import');
@@ -31,6 +33,10 @@ Route::middleware(['auth'])->group(function (){
     Route::put('/transaksi/update/{idacara}', 'TransaksiController@update')->name('transaksi.update');
     Route::put('/transaksi/upload/{id}', 'TransaksiController@upload')->name('transaksi.upload');
     Route::put('/transaksi/delete/{idacara}', 'TransaksiController@delete')->name('transaksi.hapus');
+
+    Route::get('/nilai_peserta', 'NilaiController@index')->name('nilai.index');
+    Route::post('/nilai_peserta')->name('nilai.store');
+    
 
     Route::get('/data/laporan', 'DataController@laporan')->name('data.laporan');
     Route::post('/data/laporan', 'DataController@downloadLaporan')->name('data.download');
