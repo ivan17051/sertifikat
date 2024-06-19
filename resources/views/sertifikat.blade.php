@@ -185,19 +185,14 @@ active
                             <div class="form-group">
                                 <label for="background">Jenis Sertifikat</label>
                                 <select name="jns_sertif" id="jns_sertif" class="form-control select2">
-                                    <option value="" @if(isset($acara->jns_sertif)) selected @endif disabled> --Pilih--
-                                    </option>
-                                    <option value="1" @if($acara->jns_sertif == 1) selected @endif>Layak Higiene
-                                        Sanitasi Makanan</option>
-                                    <option value="2" @if($acara->jns_sertif == 2) selected @endif>Pelatihan Tenaga
-                                        Kesehatan</option>
-                                    <option value="3" @if($acara->jns_sertif == 3) selected @endif>Piagam Penghargaan
-                                    </option>
-                                    <option value="4" @if($acara->jns_sertif == 4) selected @endif>Umum MSIB</option>
-                                    <option value="5" @if($acara->jns_sertif == 5) selected @endif>Umum Pelatihan
-                                    </option>
-                                    <option value="6" @if($acara->jns_sertif == 6) selected @endif>Kejuaraan Piagam
-                                        Penghargaan</option>
+                                    <option value="" @if(isset($acara->jns_sertif)) selected @endif disabled> --Pilih-- </option>
+                                    <option value="1" @if($acara->jns_sertif == 1) selected @endif>Layak Higiene Sanitasi Makanan</option>
+                                    <option value="2" @if($acara->jns_sertif == 2) selected @endif>Pelatihan Tenaga Kesehatan</option>
+                                    <option value="3" @if($acara->jns_sertif == 3) selected @endif>Piagam Penghargaan</option>
+                                    <option value="4" @if($acara->jns_sertif == 4) selected @endif>Umum MSIB Non Nilai</option>
+                                    <option value="7" @if($acara->jns_sertif == 7) selected @endif>Umum MSIB Nilai</option>
+                                    <option value="5" @if($acara->jns_sertif == 5) selected @endif>Umum Pelatihan</option>
+                                    <option value="6" @if($acara->jns_sertif == 6) selected @endif>Kejuaraan Piagam Penghargaan</option>
                                 </select>
                             </div>
                         </div>
@@ -419,7 +414,9 @@ active
                             @elseif($acara->jns_sertif==3)
                             <p class="text-muted">Piagam Penghargaan</p>
                             @elseif($acara->jns_sertif==4)
-                            <p class="text-muted">Umum MSIB</p>
+                            <p class="text-muted">Umum MSIB Non Nilai</p>
+                            @elseif($acara->jns_sertif==7)
+                            <p class="text-muted">Umum MSIB Nilai</p>
                             @elseif($acara->jns_sertif==5)
                             <p class="text-muted">Umum Pelatihan</p>
                             @elseif($acara->jns_sertif==6)

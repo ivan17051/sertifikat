@@ -48,6 +48,7 @@ class TransaksiController extends Controller
         elseif($d['acara']->jns_sertif == 4) return view('cetak.cetak4', $d);
         elseif($d['acara']->jns_sertif == 5) return view('cetak.cetak5', $d);
         elseif($d['acara']->jns_sertif == 6) return view('cetak.cetak6', $d);
+        elseif($d['acara']->jns_sertif == 7) return view('cetak.cetak7', $d);
     }
 
     public function upload($id, Request $request){
